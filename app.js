@@ -1289,13 +1289,20 @@ function openVideoModal(videoId, title) {
   const modal = document.getElementById('videoModal');
   const iframe = document.getElementById('videoModalIframe');
   const titleEl = document.getElementById('videoModalTitle');
+  const directBtn = document.getElementById('videoModalDirectBtn');
   if (!modal || !iframe) return;
+
+  const targetId = (videoId && videoId !== 'jfKfPfyJRdk') ? videoId : '2bfaB0CAz4I';
 
   if (titleEl && title) {
     titleEl.innerHTML = `<i class="fab fa-youtube" style="color:#ef4444;"></i> ${title}`;
   }
 
-  iframe.src = `https://www.youtube.com/embed/${videoId || 'jfKfPfyJRdk'}?autoplay=1&rel=0`;
+  if (directBtn) {
+    directBtn.href = `https://youtu.be/${targetId}`;
+  }
+
+  iframe.src = `https://www.youtube.com/embed/${targetId}?autoplay=1&rel=0`;
   modal.classList.add('active');
 }
 
