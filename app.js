@@ -636,19 +636,24 @@ function initMobileMenu() {
     }
   });
 
-  // Close mobile menu when clicking a link
-  const navLinks = document.querySelectorAll('.nav-link');
+  // Close mobile menu & trigger navigation when tapping any nav link
+  const navLinks = navMenu.querySelectorAll('.nav-link');
   navLinks.forEach(link => {
-    link.addEventListener('click', () => {
+    link.addEventListener('click', (e) => {
       navMenu.classList.remove('active', 'mobile-active');
       const icon = mobileBtn.querySelector('i');
       if (icon) icon.className = 'fas fa-bars';
+
+      const href = link.getAttribute('href');
+      if (href && href !== '#' && !href.startsWith('javascript:')) {
+        window.location.href = href;
+      }
     });
   });
 
   // Close mobile menu when clicking outside
   document.addEventListener('click', (e) => {
-    if (!navMenu.contains(e.target) && !mobileBtn.contains(e.target)) {
+    if (navMenu && !navMenu.contains(e.target) && !mobileBtn.contains(e.target)) {
       navMenu.classList.remove('active', 'mobile-active');
       const icon = mobileBtn.querySelector('i');
       if (icon) icon.className = 'fas fa-bars';
