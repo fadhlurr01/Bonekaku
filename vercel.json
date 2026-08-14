@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "cleanUrls": true,
+  "routes": [
+    {
+      "src": "/(.*)\\.css",
+      "headers": { "content-type": "text/css; charset=utf-8" }
+    },
+    {
+      "src": "/(.*)\\.js",
+      "headers": { "content-type": "application/javascript; charset=utf-8" }
+    },
+    {
+      "src": "/(.*)\\.html",
+      "headers": { "content-type": "text/html; charset=utf-8" }
+    },
+    {
+      "src": "/",
+      "dest": "/index.html"
+    }
+  ]
+}

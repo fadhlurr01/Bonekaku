@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portal Login Admin Executive - Bonekaku Enterprise">
+  <title>Login Executive Admin – Bonekaku Enterprise</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="Icon-001b-300x300_eA0g.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Main Styles -->
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    /* --------------------------------------------------------------------------
+       FULL-SCREEN 100VW x 100VH 2-COLUMN SPLIT FUTURISTIC GRADIENT LOGIN
+       -------------------------------------------------------------------------- */
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    body {
+      background: #140d07;
+      min-height: 100vh;
+      display: flex;
+      align-items: stretch;
+      justify-content: stretch;
+    }
+
+    .login-full-screen-container {
+      width: 100vw;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      position: relative;
+      z-index: 5;
+    }
+
+    /* Left Column: Cosmic Brand Universe Page */
+    .login-left-brand-page {
+      background: linear-gradient(135deg, #120904 0%, #25160b 45%, #180d06 100%);
+      color: #ffffff;
+      padding: 4.5rem 4.5rem 3.5rem 4.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+      border-right: 1px solid rgba(217, 119, 6, 0.25);
+    }
+
+    /* Futuristic Liquid Gradient Glow Overlay */
+    .login-left-bg-overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 85% 25%, rgba(217, 119, 6, 0.28) 0%, transparent 60%),
+                  radial-gradient(circle at 15% 85%, rgba(139, 90, 43, 0.22) 0%, transparent 55%);
+      pointer-events: none;
+    }
+
+    .login-brand-header {
+      position: relative;
+      z-index: 2;
+    }
+
+    .login-logo {
+      height: 46px;
+      width: auto;
+      filter: brightness(0) invert(1);
+      margin-bottom: 1.75rem;
+    }
+
+    .login-badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.45rem 1.15rem;
+      border-radius: var(--radius-full);
+      background: rgba(217, 119, 6, 0.2);
+      border: 1px solid rgba(217, 119, 6, 0.45);
+      color: #fbbf24;
+      font-family: var(--font-heading);
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 1.35rem;
+      box-shadow: 0 4px 15px rgba(217, 119, 6, 0.2);
+    }
+
+    .login-brand-title {
+      font-family: var(--font-heading);
+      font-size: clamp(2.2rem, 3.2vw, 3rem);
+      font-weight: 900;
+      color: #ffffff;
+      line-height: 1.15;
+      margin-bottom: 0.85rem;
+      letter-spacing: -0.5px;
+    }
+
+    .login-brand-desc {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.82);
+      line-height: 1.65;
+      margin: 0;
+      max-width: 480px;
+    }
+
+    /* Floating 3D Mascot Pedestal Showcase (Full Hero 3D Object) */
+    .login-mascot-showcase {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 320px;
+      margin: 1.5rem 0;
+    }
+
+    .login-mascot-img {
+      max-height: 300px;
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 25px 50px rgba(0,0,0,0.65));
+      animation: floatMascot 4.5s ease-in-out infinite;
+      position: relative;
+      z-index: 2;
+    }
+
+    .login-mascot-showcase::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%) scaleY(0.4);
+      width: 280px;
+      height: 140px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(217, 119, 6, 0.55) 0%, rgba(139, 90, 43, 0.2) 55%, transparent 80%);
+      filter: blur(20px);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .login-left-footer {
+      position: relative;
+      z-index: 2;
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.65);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    /* Right Column: Glassmorphic Authentication Page */
+    .login-right-form-page {
+      padding: 4.5rem 4.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: rgba(254, 250, 244, 0.96);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      position: relative;
+      box-shadow: inset 20px 0 50px rgba(0, 0, 0, 0.08);
+    }
+
+    .form-header {
+      margin-bottom: 2.5rem;
+    }
+
+    .form-header h2 {
+      font-family: var(--font-heading);
+      font-size: 2.1rem;
+      font-weight: 900;
+      color: var(--text-primary);
+      margin: 0 0 0.4rem 0;
+      letter-spacing: -0.5px;
+    }
+
+    .form-header p {
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin: 0;
+    }
+
+    .form-group-login {
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    .form-group-login label {
+      display: block;
+      font-family: var(--font-heading);
+      font-size: 0.875rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .input-with-icon {
+      position: relative;
+    }
+
+    .input-with-icon i.input-icon-left {
+      position: absolute;
+      left: 1.25rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--accent-brand);
+      font-size: 1.05rem;
+    }
+
+    .form-control-login {
+      width: 100%;
+      padding: 0.95rem 1.25rem 0.95rem 3.25rem;
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(139, 90, 43, 0.25);
+      background: var(--bg-secondary);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      color: var(--text-primary);
+      box-sizing: border-box;
+      transition: all 0.25s ease;
+    }
+
+    .form-control-login:focus {
+      background: #ffffff;
+      border-color: var(--accent-brand);
+      box-shadow: 0 0 0 3px rgba(139, 90, 43, 0.16);
+    }
+
+    .toggle-pw-btn {
+      position: absolute;
+      right: 1.15rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 0.95rem;
+    }
+
+    .form-options-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+      font-size: 0.875rem;
+    }
+
+    .checkbox-remember {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-secondary);
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .forgot-link {
+      color: var(--accent-brand);
+      font-weight: 800;
+      text-decoration: underline;
+    }
+
+    .btn-login-submit {
+      width: 100%;
+      padding: 1.05rem;
+      border-radius: var(--radius-full);
+      background: var(--gradient-brand);
+      color: #ffffff;
+      font-family: var(--font-heading);
+      font-size: 1.05rem;
+      font-weight: 800;
+      box-shadow: 0 10px 30px rgba(139, 90, 43, 0.35);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.65rem;
+      margin-bottom: 1.75rem;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-login-submit:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(139, 90, 43, 0.5);
+    }
+
+    .demo-credentials-box {
+      background: var(--accent-brand-soft);
+      border: 1px dashed rgba(139, 90, 43, 0.35);
+      border-radius: var(--radius-sm);
+      padding: 0.95rem 1.15rem;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.75rem;
+    }
+
+    .demo-credentials-box strong {
+      color: var(--accent-brand);
+    }
+
+    .btn-quick-fill {
+      padding: 0.35rem 0.85rem;
+      border-radius: var(--radius-full);
+      background: var(--accent-brand);
+      color: #ffffff;
+      font-size: 0.775rem;
+      font-weight: 800;
+      border: none;
+      cursor: pointer;
+    }
+
+    .return-home-link {
+      text-align: center;
+      display: block;
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: color 0.25s ease;
+    }
+
+    .return-home-link:hover {
+      color: var(--accent-brand);
+    }
+
+    /* Fixed Glass Notification Toast */
+    .toast-notif {
+      position: fixed;
+      bottom: 2.5rem;
+      right: 2.5rem;
+      background: rgba(24, 15, 8, 0.95);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      color: #ffffff;
+      padding: 1.1rem 1.75rem;
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(239, 68, 68, 0.5);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      z-index: 9999;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .toast-notif.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    @media (max-width: 1024px) {
+      .login-full-screen-container {
+        grid-template-columns: 1fr;
+      }
+      .login-left-brand-page {
+        display: none;
+      }
+      .login-right-form-page {
+        padding: 3.5rem 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PLAYFUL FUTURISTIC TOY UNIVERSE ANIMATED SCENE BACKGROUND -->
+  <div class="animated-toy-universe-bg">
+    <div class="toy-blob blob-1 floating-shape"></div>
+    <div class="toy-blob blob-2 floating-shape"></div>
+    <div class="toy-blob blob-3 floating-shape"></div>
+    <div class="toy-particle particle-star-1 floating-shape"><i class="fas fa-star"></i></div>
+    <div class="toy-particle particle-star-2 floating-shape"><i class="fas fa-certificate"></i></div>
+    <div class="toy-particle particle-cloud-1 floating-shape"><i class="fas fa-cloud"></i></div>
+    <div class="toy-particle particle-sparkle-1 floating-shape"><i class="fas fa-sparkles"></i></div>
+  </div>
+
+  <!-- FULL-SCREEN 100VW x 100VH 2-COLUMN SPLIT CONTAINER -->
+  <div class="login-full-screen-container">
+    
+    <!-- LEFT PAGE: BRAND UNIVERSE & 3D MASCOT SHOWCASE -->
+    <div class="login-left-brand-page">
+      <div class="login-left-bg-overlay"></div>
+
+      <div class="login-brand-header">
+        <img src="Logo-Baru-Bonekaku-600x163_eA0g.png" alt="Logo Bonekaku" class="login-logo">
+        <div>
+          <span class="login-badge-pill"><i class="fas fa-shield-halved"></i> Executive Portal</span>
+        </div>
+        <h1 class="login-brand-title">Management System</h1>
+        <p class="login-brand-desc">Portal resmi manajemen produk katalog, pesanan custom, dan publikasi artikel Bonekaku Enterprise.</p>
+      </div>
+
+      <!-- 3D Mascot Showcase on Golden Pedestal Ring (Full Hero 3D Object) -->
+      <div class="login-mascot-showcase">
+        <img src="hero3d.png" alt="Bonekaku 3D Mascot Model Archie Bear" class="login-mascot-img">
+      </div>
+
+      <div class="login-left-footer">
+        <span>&copy; 2026 Bonekaku.co.id</span>
+        <span><i class="fas fa-award" style="color:var(--accent-gold);"></i> Standard SNI Resmi #1</span>
+      </div>
+    </div>
+
+    <!-- RIGHT PAGE: AUTHENTICATION CARD FORM -->
+    <div class="login-right-form-page">
+      <div class="form-header">
+        <h2>Selamat Datang</h2>
+        <p>Masukkan Username & Password untuk mengakses Dashboard Admin</p>
+      </div>
+
+      <form id="loginForm" onsubmit="handleLoginSubmit(event)">
+        <div class="form-group-login">
+          <label for="username">Username atau Email</label>
+          <div class="input-with-icon">
+            <i class="fas fa-user input-icon-left"></i>
+            <input type="text" id="username" class="form-control-login" placeholder="Masukkan username..." required>
+          </div>
+        </div>
+
+        <div class="form-group-login">
+          <label for="password">Password</label>
+          <div class="input-with-icon">
+            <i class="fas fa-lock input-icon-left"></i>
+            <input type="password" id="password" class="form-control-login" placeholder="Masukkan password..." required>
+            <i class="fas fa-eye toggle-pw-btn" id="togglePwBtn" onclick="togglePasswordVisibility()"></i>
+          </div>
+        </div>
+
+        <div class="form-options-row">
+          <label class="checkbox-remember">
+            <input type="checkbox" id="rememberMe" checked> Ingat Saya
+          </label>
+          <a href="#" onclick="alert('Silahkan hubungi Tim IT / Admin Utama Bonekaku di 0813-8550-8611 untuk reset password.')" class="forgot-link">Lupa Password?</a>
+        </div>
+
+        <button type="submit" class="btn-login-submit">
+          <i class="fas fa-right-to-bracket"></i> Log In ke Admin Dashboard
+        </button>
+
+        <a href="index.html" class="return-home-link">
+          &larr; Kembali ke Website Utama
+        </a>
+      </form>
+    </div>
+
+  </div>
+
+  <!-- TOAST ERROR NOTIFICATION -->
+  <div class="toast-notif" id="loginToast">
+    <i class="fas fa-triangle-exclamation" style="color:#ef4444; font-size:1.3rem;"></i>
+    <span id="loginToastMsg">Username atau Password salah!</span>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    function togglePasswordVisibility() {
+      const pwInput = document.getElementById('password');
+      const icon = document.getElementById('togglePwBtn');
+      if (pwInput.type === 'password') {
+        pwInput.type = 'text';
+        icon.className = 'fas fa-eye-slash toggle-pw-btn';
+      } else {
+        pwInput.type = 'password';
+        icon.className = 'fas fa-eye toggle-pw-btn';
+      }
+    }
+
+    function handleLoginSubmit(e) {
+      e.preventDefault();
+      const user = document.getElementById('username').value.trim();
+      const pass = document.getElementById('password').value.trim();
+
+      // Flexible validation: accepts admin / admin or bonekaku / bonekaku
+      if ((user === 'admin' || user === 'admin@bonekaku.co.id' || user === 'bonekaku') && (pass === 'admin' || pass === 'bonekaku' || pass === 'bonekaku123')) {
+        localStorage.setItem('bonekaku_admin_logged', 'true');
+        window.location.href = 'admin.html';
+      } else {
+        const toast = document.getElementById('loginToast');
+        document.getElementById('loginToastMsg').innerText = "Username atau Password yang Anda masukkan salah!";
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 3500);
+      }
+    }
+  </script>
+</body>
+</html>

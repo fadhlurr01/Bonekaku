@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Katalog Produk Custom & Souvenir &mdash; Bonekaku Enterprise</title>
+  <meta name="description" content="Jelajahi katalog terpadu boneka custom, maskot perusahaan, bantal print, dan souvenir produk unggulan bersertifikat SNI dari Bonekaku Enterprise.">
+  
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome 6 Pro CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Main Styles -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="catalog">
+
+  <!-- Top Scroll Progress Bar -->
+  <div class="scroll-progress-bar" id="scrollProgress"></div>
+
+
+
+  <!-- PLAYFUL FUTURISTIC TOY UNIVERSE ANIMATED SCENE BACKGROUND -->
+  <div class="animated-toy-universe-bg">
+    <div class="toy-blob blob-1 floating-shape"></div>
+    <div class="toy-blob blob-2 floating-shape"></div>
+    <div class="toy-blob blob-3 floating-shape"></div>
+    <div class="toy-particle particle-star-1 floating-shape"><i class="fas fa-star"></i></div>
+    <div class="toy-particle particle-star-2 floating-shape"><i class="fas fa-certificate"></i></div>
+    <div class="toy-particle particle-cloud-1 floating-shape"><i class="fas fa-cloud"></i></div>
+    <div class="toy-particle particle-cube-1 floating-shape"><i class="fas fa-cube"></i></div>
+    <div class="toy-particle particle-sparkle-1 floating-shape"><i class="fas fa-sparkles"></i></div>
+    <div class="toy-particle particle-sparkle-2 floating-shape"><i class="fas fa-shapes"></i></div>
+  </div>
+
+  <!-- FLOATING HEADER / NAVBAR -->
+  <header class="header" id="mainHeader">
+    <div class="container">
+      <div class="nav-wrapper">
+        <a href="index.html" class="logo-brand">
+          <img src="Logo-Baru-Bonekaku-600x163_eA0g.png" alt="Logo Bonekaku Enterprise" class="logo-img">
+        </a>
+
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="katalog.html" class="nav-link active">Katalog</a></li>
+          <li><a href="layanan.html" class="nav-link">Layanan</a></li>
+          <li><a href="tentang-kami.html" class="nav-link">Tentang Kami</a></li>
+          <li><a href="kontak.html" class="nav-link">Kontak Kami</a></li>
+          <li><a href="artikel.html" class="nav-link">Artikel</a></li>
+          <li><a href="login.html" class="nav-link admin-link" style="color:var(--accent-gold); font-weight:800;"><i class="fas fa-user-gear"></i> Admin</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <button class="mobile-menu-toggle" id="mobileMenuBtn">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- SUBPAGE BANNER HEADER -->
+  <section class="subpage-header-banner">
+    <div class="container subpage-banner-content reveal-up">
+      <div class="breadcrumb-trail">
+        <a href="index.html">Home</a> <i class="fas fa-chevron-right" style="font-size:0.7rem;"></i> <span>Katalog Produk</span>
+      </div>
+      <h1 class="subpage-title">Katalog Produk Bonekaku</h1>
+      <p class="subpage-subtitle">Penelusuran terpadu seluruh koleksi boneka maskot, plushie souvenir, bantal custom print, dan souvenir produk unggulan Bonekaku.</p>
+    </div>
+  </section>
+
+  <!-- UNIFIED CATALOG (E-COMMERCE SIDEBAR LAYOUT ACCORDING TO SS_1492) SECTION -->
+  <section class="catalog-section" id="catalog">
+    <div class="container">
+      
+      <!-- Mobile Filter Toggle Bar (for screens <= 992px) -->
+      <div class="mobile-filter-bar">
+        <button class="btn btn-secondary mobile-filter-btn" id="mobileFilterToggleBtn">
+          <i class="fas fa-sliders"></i> Filter & Kategori
+        </button>
+        <div class="mobile-total-count">
+          Total: <strong id="mobileTotalCount">16 Produk</strong>
+        </div>
+      </div>
+
+      <div class="catalog-layout-grid">
+        
+        <!-- LEFT SIDEBAR FILTER (REF SS_1492) -->
+        <aside class="catalog-sidebar" id="catalogSidebar">
+          <div class="sidebar-inner-card">
+            <div class="sidebar-header">
+              <h3><i class="fas fa-filter" style="color:var(--accent-brand);"></i> Filter Produk</h3>
+              <button class="reset-filter-btn" id="resetFilterBtn" title="Reset Semua Filter">
+                <i class="fas fa-undo"></i> Reset
+              </button>
+            </div>
+
+            <!-- Search Input Box in Sidebar -->
+            <div class="sidebar-search-box">
+              <i class="fas fa-search"></i>
+              <input type="text" id="searchInput" placeholder="Cari nama produk / bahan...">
+            </div>
+
+            <!-- Category Filter Checkboxes (Matching Screenshot Exactly) -->
+            <div class="filter-group">
+              <h4 class="filter-group-title"><i class="fas fa-folder-open"></i> Categories:</h4>
+              <div class="checkbox-list" id="categoryCheckboxGroup">
+                <label class="checkbox-item">
+                  <input type="checkbox" class="sidebar-checkbox" value="all" id="chk-all">
+                  <span class="custom-chk"></span>
+                  <span class="chk-label">Semua Produk</span>
+                  <span class="count-badge" id="count-all">102</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" class="sidebar-checkbox" value="favorite" checked id="chk-favorite">
+                  <span class="custom-chk"></span>
+                  <span class="chk-label">Most Favorite</span>
+                  <span class="count-badge" id="count-favorite">6</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" class="sidebar-checkbox" value="animal-series" id="chk-animal-series">
+                  <span class="custom-chk"></span>
+                  <span class="chk-label">Animal Series</span>
+                  <span class="count-badge" id="count-animal-series">12</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" class="sidebar-checkbox" value="bantal-custom" id="chk-bantal-custom">
+                  <span class="custom-chk"></span>
+                  <span class="chk-label">Bantal Custom</span>
+                  <span class="count-badge" id="count-bantal-custom">14</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" class="sidebar-checkbox" value="boneka-custom" id="chk-boneka-custom">
+                  <span class="custom-chk"></span>
+                  <span class="chk-label">Boneka Custom</span>
+                  <span class="count-badge" id="count-boneka-custom">18</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" class="sidebar-checkbox" value="boneka-souvenir" id="chk-boneka-souvenir">
+                  <span class="custom-chk"></span>
+                  <span class="chk-label">Boneka Souvenir</span>
+                  <span class="count-badge" id="count-boneka-souvenir">16</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" class="sidebar-checkbox" value="graduation-series" id="chk-graduation-series">
+                  <span class="custom-chk"></span>
+                  <span class="chk-label">Graduation Series</span>
+                  <span class="count-badge" id="count-graduation-series">7</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" class="sidebar-checkbox" value="maskot-badut" id="chk-maskot-badut">
+                  <span class="custom-chk"></span>
+                  <span class="chk-label">Maskot/Badut</span>
+                  <span class="count-badge" id="count-maskot-badut">1</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" class="sidebar-checkbox" value="masker" id="chk-masker">
+                  <span class="custom-chk"></span>
+                  <span class="chk-label">Masker</span>
+                  <span class="count-badge" id="count-masker">1</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" class="sidebar-checkbox" value="new-animal-series" id="chk-new-animal-series">
+                  <span class="custom-chk"></span>
+                  <span class="chk-label">New Animal Series</span>
+                  <span class="count-badge" id="count-new-animal-series">25</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Size / Specification Filter Group (Matching Screenshot Exactly) -->
+            <div class="filter-group">
+              <h4 class="filter-group-title"><i class="fas fa-ruler-vertical"></i> Ukuran Produk:</h4>
+              <div class="checkbox-list" id="sizeCheckboxGroup">
+                <label class="checkbox-item">
+                  <input type="checkbox" class="size-checkbox" value="15cm">
+                  <span class="custom-chk"></span>
+                  <span class="chk-label">15 cm</span>
+                  <span class="count-badge">6</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" class="size-checkbox" value="12cm">
+                  <span class="custom-chk"></span>
+                  <span class="chk-label">12 cm</span>
+                  <span class="count-badge">11</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" class="size-checkbox" value="17cm">
+                  <span class="custom-chk"></span>
+                  <span class="chk-label">17 cm</span>
+                  <span class="count-badge">1</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" class="size-checkbox" value="18cm">
+                  <span class="custom-chk"></span>
+                  <span class="chk-label">18 cm</span>
+                  <span class="count-badge">4</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" class="size-checkbox" value="20cm">
+                  <span class="custom-chk"></span>
+                  <span class="chk-label">20 cm</span>
+                  <span class="count-badge">3</span>
+                </label>
+              </div>
+            </div>
+
+          </div>
+        </aside>
+
+        <!-- RIGHT MAIN CATALOG CONTENT -->
+        <main class="catalog-main-content">
+          
+          <!-- Top Main Header & Counter Bar -->
+          <div class="catalog-top-bar">
+            <div class="catalog-header-info">
+              <h2>Katalog Boneka Enterprise</h2>
+              <p>Menampilkan total <strong id="productTotalCountText" style="color:var(--accent-brand);">16 Produk</strong> siap produksi</p>
+            </div>
+
+            <div class="sort-by-box">
+              <!-- 3-Way View Layout Switcher (Ref SS_1570 Redesign) -->
+              <div class="view-mode-switcher" id="viewModeSwitcher">
+                <button type="button" class="view-btn active" data-view="grid" title="Tampilan Grid 3 Kolom" onclick="switchCatalogViewMode('grid')">
+                  <i class="fas fa-th-large"></i> <span class="view-btn-text">Grid</span>
+                </button>
+                <button type="button" class="view-btn" data-view="list" title="Tampilan List Baris Detail" onclick="switchCatalogViewMode('list')">
+                  <i class="fas fa-list"></i> <span class="view-btn-text">List Row</span>
+                </button>
+                <button type="button" class="view-btn" data-view="compact" title="Tampilan Kompak" onclick="switchCatalogViewMode('compact')">
+                  <i class="fas fa-table-cells"></i> <span class="view-btn-text">Kompak</span>
+                </button>
+              </div>
+
+              <label for="sortSelect" class="sort-label"><i class="fas fa-arrow-down-short-wide"></i> Urutkan:</label>
+              
+              <!-- Native select (kept hidden and synced for filter logic) -->
+              <select id="sortSelect" class="custom-select" style="display:none;">
+                <option value="default">Rekomendasi Utama</option>
+                <option value="name-asc">Nama (A - Z)</option>
+                <option value="name-desc">Nama (Z - A)</option>
+                <option value="moq-low">MOQ Terendah</option>
+              </select>
+
+              <!-- Modern Custom Glassmorphism Dropdown UI (Ref SS_1503 Redesign) -->
+              <div class="custom-dropdown" id="customSortDropdown">
+                <button type="button" class="dropdown-trigger" id="dropdownTriggerBtn" aria-haspopup="listbox" aria-expanded="false">
+                  <span class="trigger-label" id="triggerLabel"><i class="fas fa-star" style="color:var(--accent-gold);"></i> Rekomendasi Utama</span>
+                  <i class="fas fa-chevron-down trigger-chevron"></i>
+                </button>
+
+                <div class="dropdown-menu-popup" id="dropdownMenuPopup" role="listbox">
+                  <div class="dropdown-option-item active" data-value="default" role="option">
+                    <i class="fas fa-star option-icon" style="color:var(--accent-gold);"></i>
+                    <span class="option-text">Rekomendasi Utama</span>
+                    <i class="fas fa-check check-icon"></i>
+                  </div>
+                  <div class="dropdown-option-item" data-value="name-asc" role="option">
+                    <i class="fas fa-arrow-down-a-z option-icon"></i>
+                    <span class="option-text">Nama (A - Z)</span>
+                    <i class="fas fa-check check-icon"></i>
+                  </div>
+                  <div class="dropdown-option-item" data-value="name-desc" role="option">
+                    <i class="fas fa-arrow-down-z-a option-icon"></i>
+                    <span class="option-text">Nama (Z - A)</span>
+                    <i class="fas fa-check check-icon"></i>
+                  </div>
+                  <div class="dropdown-option-item" data-value="moq-low" role="option">
+                    <i class="fas fa-boxes-stacked option-icon"></i>
+                    <span class="option-text">MOQ Terendah</span>
+                    <i class="fas fa-check check-icon"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Active Filter Tag Pills -->
+          <div class="active-filter-tags" id="activeFilterTags">
+            <!-- Dynamic active tags -->
+          </div>
+
+          <!-- Products Grid / List Container -->
+          <div class="products-grid view-grid-mode" id="productsGrid">
+            <!-- Dynamic rendering via app.js -->
+          </div>
+        </main>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- LIGHTBOX MODAL (REF SS_1569 FULL PRODUCT DETAIL SHOWCASE) -->
+  <div class="modal-overlay" id="productModal">
+    <div class="modal-container modal-container-rich">
+      <button class="modal-close-btn" onclick="closeModal()">
+        <i class="fas fa-times"></i>
+      </button>
+      
+      <!-- Left Column: High-Res Image Gallery Stage -->
+      <div class="modal-left-gallery">
+        <div class="modal-img-wrapper">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" id="modalImg" alt="Detail Produk">
+        </div>
+      </div>
+
+      <!-- Right Column: Rich Information & Q&A Specs (Ref SS_1569) -->
+      <div class="modal-body-content">
+        <div class="modal-header-meta">
+          <span class="modal-tag" id="modalCategory">Most Favorite</span>
+          <h2 id="modalTitle" class="modal-product-title">Judul Produk</h2>
+        </div>
+
+        <div class="modal-pills-row">
+          <span class="meta-pill" id="modalSizePill"><i class="fas fa-ruler-vertical"></i> Size: 12 cm</span>
+          <span class="meta-pill" id="modalMoqPill"><i class="fas fa-boxes-stacked"></i> Minimum: 50 pcs</span>
+          <span class="meta-pill price" id="modalPricePill"><i class="fas fa-tag"></i> Rp 35.000 - 65.000</span>
+        </div>
+
+        <!-- Rich Q&A Breakdown (Matching Screenshot_1569) -->
+        <div class="modal-qa-container">
+          
+          <div class="qa-item">
+            <h4><i class="fas fa-circle-question" style="color:var(--accent-brand);"></i> Apa Itu Boneka Souvenir atau Promosi?</h4>
+            <p id="modalQa1">Boneka Souvenir atau Boneka Promosi adalah boneka berkualitas tinggi yang dipesan khusus untuk Souvenir ulang tahun, Souvenir Aqiqah, Souvenir satu bulanan, merchandise corporate, hingga promosi produk & perusahaan.</p>
+          </div>
+
+          <div class="qa-item">
+            <h4><i class="fas fa-palette" style="color:var(--accent-gold);"></i> Desainnya Bagaimana?</h4>
+            <p id="modalQa2">Logo atau tulisan pada baju/boneka dapat dikerjakan dengan teknik pembordiran komputer presisi otomatis atau digital printing HD tergantung pada model dan spesifikasi desain Anda.</p>
+          </div>
+
+          <div class="qa-item">
+            <h4><i class="fas fa-coins" style="color:#10b981;"></i> Berapa Harganya?</h4>
+            <p id="modalQa3">Harga sangat fleksibel dan bervariasi tergantung pada ukuran boneka, jumlah kuantitas pesanan, serta detail aksesoris yang digunakan.</p>
+          </div>
+
+          <div class="qa-item">
+            <h4><i class="fas fa-truck-ramp-box" style="color:#3b82f6;"></i> Pemesanan Minimal Berapa?</h4>
+            <p id="modalQa4">Minimum order fleksibel mulai dari 50 s/d 100 pcs siap dikirim ke seluruh lokasi di Indonesia dengan jaminan sertifikasi resmi SNI.</p>
+          </div>
+
+        </div>
+
+        <div class="modal-specs-section">
+          <h4><i class="fas fa-shield-halved" style="color:var(--accent-brand);"></i> Spesifikasi & Keunggulan:</h4>
+          <ul class="spec-list" id="modalSpecs"></ul>
+        </div>
+
+        <div class="modal-action-row">
+          <a href="#" id="modalWaBtn" target="_blank" class="btn btn-primary btn-whatsapp" style="flex:1;">
+            <i class="fab fa-whatsapp"></i> Order & Konsultasi WA Direct
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FLOATING WHATSAPP CHAT DRAWER -->
+  <div class="wa-floating-container">
+    <div class="wa-chat-drawer" id="waChatDrawer">
+      <div class="wa-chat-header">
+        <div>
+          <h4>Bonekaku Customer Support</h4>
+          <p><i class="fas fa-circle" style="color:#25d366; font-size:0.7rem;"></i> Online - Balas Cepat</p>
+        </div>
+      </div>
+      <div class="wa-chat-body">
+        <div class="wa-chat-msg">
+          Halo! 👋 Selamat datang di Bonekaku. Ada yang bisa kami bantu mengenai pembuatan boneka custom & souvenir?
+        </div>
+        <span class="wa-options-title">Pilih Topik Konsultasi:</span>
+        <a href="https://wa.me/6281385508611?text=Halo%20Admin,%20saya%20ingin%20tanya%20penawaran%20harga%20boneka%20custom" target="_blank" class="wa-option-link">
+          <i class="fas fa-tag" style="color:var(--accent-brand);"></i> Tanya Penawaran Harga
+        </a>
+        <a href="https://wa.me/6281385508611?text=Halo%20Admin,%20saya%20ingin%20request%20sample%203D%20/%20prototype" target="_blank" class="wa-option-link">
+          <i class="fas fa-cube" style="color:var(--accent-brand);"></i> Request Sample 3D / Prototype
+        </a>
+      </div>
+    </div>
+    <div class="wa-order-chip">
+      <span>Order ? Chat Kami Aja</span>
+    </div>
+    <button class="floating-wa-btn" id="waFloatingBtn" title="Chat Customer Service">
+      <i class="fab fa-whatsapp"></i>
+    </button>
+  </div>
+
+  <!-- COMBINED LUXURY FOOTER WITH INTEGRATED MAP -->
+  <footer class="footer" id="location">
+    <div class="container">
+      <div class="footer-split-layout">
+        
+        <!-- Left Side: Brand, Navigation & Contact -->
+        <div class="footer-left-content">
+          <div class="footer-brand-header">
+            <img src="Logo-Baru-Bonekaku-600x163_eA0g.png" alt="Logo Bonekaku Enterprise Footer" class="footer-logo">
+            <p class="footer-brand-desc">
+              Pabrik Manufaktur & Konveksi Merchandise Boneka Custom Enterprise #1 di Indonesia. Spesialisasi maskot brand perusahaan, bantal cetak custom, & souvenir plushie bersertifikat SNI.
+            </p>
+          </div>
+
+          <div class="footer-columns-grid">
+            <!-- Col 1: Menu Utama -->
+            <div class="footer-col">
+              <h4>Menu Utama</h4>
+              <ul class="footer-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="katalog.html">Katalog</a></li>
+                <li><a href="layanan.html">Layanan</a></li>
+                <li><a href="tentang-kami.html">Tentang Kami</a></li>
+                <li><a href="kontak.html">Kontak Kami</a></li>
+                <li><a href="artikel.html">Artikel</a></li>
+              </ul>
+            </div>
+
+            <!-- Col 2: Kategori Layanan -->
+            <div class="footer-col">
+              <h4>Kategori Layanan</h4>
+              <ul class="footer-links">
+                <li><a href="layanan.html">Boneka Souvenir</a></li>
+                <li><a href="layanan.html">Bantal Custom Print</a></li>
+                <li><a href="layanan.html">Boneka Custom 3D</a></li>
+                <li><a href="layanan.html">Maskot & Badut Event</a></li>
+              </ul>
+            </div>
+
+            <!-- Col 3: Informasi Kontak -->
+            <div class="footer-col">
+              <h4>Alamat & Kontak</h4>
+              <ul class="footer-contact-list">
+                <li><i class="fas fa-building"></i> <span>Office: Jatisampurna, Kota Bekasi</span></li>
+                <li><i class="fas fa-store"></i> <span>Workshop: Ciketing Udik, Bantar Gebang</span></li>
+                <li><i class="fab fa-whatsapp"></i> <a href="tel:081385508611">0813-8550-8611</a></li>
+                <li><i class="fas fa-envelope"></i> <a href="mailto:marketingbonekaku@gmail.com">marketingbonekaku@gmail.com</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Side: Modern Integrated Google Maps Widget -->
+        <div class="footer-right-map">
+          <div class="footer-map-widget">
+            <div class="footer-map-header">
+              <i class="fas fa-location-dot" style="color:var(--accent-gold);"></i>
+              <span>Lokasi Pabrik & Workshop Kami</span>
+            </div>
+            <div class="footer-map-frame">
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.257088921865!2d106.92482357499144!3d-6.360773993629255!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e699368d4f40f0d%3A0x6a2c2b3e405a415a!2sJl.%20Raya%20Kranggan%2C%20Jatisampurna%2C%20Kota%20Bks%2C%20Jawa%20Barat!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid" 
+                width="100%" 
+                height="100%" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Lokasi Pabrik Bonekaku Jatisampurna Bekasi">
+              </iframe>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Bonekaku.co.id. All Rights Reserved. Designed with Glassmorphism & High-Definition UI/UX.</p>
+        <div class="footer-social-links">
+          <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://youtube.com" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/6281385508611" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+    </div>
+  <!-- FLOATING QUICK JUMP BACK TO TOP BUTTON -->
+  <button class="back-to-top-btn" id="backToTopBtn" title="Kembali ke Atas">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <script src="app.js"></script>
+</body>
+</html>
