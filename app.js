@@ -1267,8 +1267,24 @@ function closeModal() {
 }
 
 /* --------------------------------------------------------------------------
-   IN-APP YOUTUBE VIDEO LIGHTBOX MODAL PLAYER
+   IN-APP YOUTUBE VIDEO LIGHTBOX MODAL PLAYER & INLINE PLAYER
    -------------------------------------------------------------------------- */
+function playInlineVideo(containerId, videoId) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  const embedUrl = `https://www.youtube.com/embed/${videoId || 'jfKfPfyJRdk'}?autoplay=1&rel=0`;
+  container.innerHTML = `
+    <iframe 
+      src="${embedUrl}" 
+      title="Video YouTube Bonekaku" 
+      frameborder="0" 
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+      allowfullscreen 
+      style="width:100%; height:100%; min-height:280px; aspect-ratio:16/9; border-radius:16px; border:0; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+    </iframe>
+  `;
+}
+
 function openVideoModal(videoId, title) {
   const modal = document.getElementById('videoModal');
   const iframe = document.getElementById('videoModalIframe');
@@ -1279,7 +1295,7 @@ function openVideoModal(videoId, title) {
     titleEl.innerHTML = `<i class="fab fa-youtube" style="color:#ef4444;"></i> ${title}`;
   }
 
-  iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+  iframe.src = `https://www.youtube.com/embed/${videoId || 'jfKfPfyJRdk'}?autoplay=1&rel=0`;
   modal.classList.add('active');
 }
 
