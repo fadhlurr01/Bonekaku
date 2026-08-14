@@ -845,37 +845,81 @@ function renderProducts(items, page = 1) {
       const sizeVal = (item.size && item.size !== 'undefined') ? item.size : '12 cm';
       const moqVal = (item.moq && item.moq !== 'undefined') ? item.moq : 'Min 50 Pcs';
       const priceVal = (item.priceRange && item.priceRange !== 'undefined') ? item.priceRange : 'Rp 35.000 – 65.000';
+      const specsList = item.specs && Array.isArray(item.specs) ? item.specs : ["Bahan Super Soft Yelvo", "Isian Dakron Silicon Grade A", "100% Sertifikasi SNI"];
 
       return `
-    <div class="product-card reveal-up" data-category="${item.category}">
-      <div class="product-card-inner-box">
-        <div class="product-img-box" onclick="openProductModal(${item.id})">
-          <img src="${item.image}" alt="${item.title}" class="product-img" onerror="this.onerror=null; this.src='Logo-Baru-Bonekaku-600x163_eA0g.png';">
-          <span class="card-category-badge"><i class="fas fa-tag"></i> ${item.categoryLabel}</span>
-          <span class="product-card-watermark">BONEKAKU_STORE</span>
-        </div>
-
-        <div class="product-info-box">
-          <h3 class="product-title" onclick="openProductModal(${item.id})">${item.title}</h3>
-          
-          <div class="product-meta-row">
-            <span class="meta-pill"><i class="fas fa-ruler-vertical"></i> ${sizeVal}</span>
-            <span class="meta-pill"><i class="fas fa-boxes-stacked"></i> ${moqVal}</span>
-            <span class="meta-pill price"><i class="fas fa-tag"></i> ${priceVal}</span>
+    <div class="product-card reveal-up" id="card-${item.id}" data-category="${item.category}">
+      <div class="product-card-inner">
+        <!-- FRONT SIDE -->
+        <div class="product-card-front">
+          <div class="product-img-box" onclick="openProductModal(${item.id})">
+            <img src="${item.image}" alt="${item.title}" class="product-img" onerror="this.onerror=null; this.src='Logo-Baru-Bonekaku-600x163_eA0g.png';">
+            <span class="card-category-badge"><i class="fas fa-tag"></i> ${item.categoryLabel}</span>
+            <span class="product-card-watermark">BONEKAKU_STORE</span>
           </div>
 
-          <p class="product-desc-short">${item.desc || 'Boneka Souvenir custom berkualitas tinggi berstandar SNI.'}</p>
+          <div class="product-info-box">
+            <h3 class="product-title" onclick="openProductModal(${item.id})">${item.title}</h3>
+            
+            <div class="product-meta-row">
+              <span class="meta-pill"><i class="fas fa-ruler-vertical"></i> ${sizeVal}</span>
+              <span class="meta-pill price"><i class="fas fa-tag"></i> ${priceVal}</span>
+            </div>
 
-          <div class="product-card-actions">
+            <div class="product-card-actions">
+              <button class="btn btn-secondary btn-sm flip-trigger-btn" onclick="toggleFlipCard(${item.id}, event)" title="Putar Kartu & Lihat Deskripsi">
+                <i class="fas fa-rotate"></i> Dibalik
+              </button>
+              <a href="https://wa.me/6281385508611?text=Halo%20Admin%20Bonekaku,%20saya%20tertarik%20dengan%20produk%20${encodeURIComponent(item.title)}" 
+                 target="_blank" 
+                 class="btn btn-primary btn-sm btn-card-wa" 
+                 onclick="event.stopPropagation();">
+                <i class="fab fa-whatsapp"></i> WA
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- BACK SIDE (FLIPPED DETAILS & FULL DESCRIPTION) -->
+        <div class="product-card-back">
+          <div class="card-back-header">
+            <span class="card-category-badge"><i class="fas fa-cube"></i> ${item.categoryLabel}</span>
+            <button class="flip-back-btn" onclick="toggleFlipCard(${item.id}, event)" title="Kembali ke Foto">
+              <i class="fas fa-rotate-left"></i> Foto
+            </button>
+          </div>
+
+          <div class="card-back-body">
+            <h3 class="card-back-title">${item.title}</h3>
+            
+            <div class="card-back-meta">
+              <span class="meta-pill"><i class="fas fa-ruler-vertical"></i> ${sizeVal}</span>
+              <span class="meta-pill"><i class="fas fa-boxes-stacked"></i> ${moqVal}</span>
+              <span class="meta-pill price"><i class="fas fa-tag"></i> ${priceVal}</span>
+            </div>
+
+            <div class="card-back-desc-box">
+              <p class="card-back-desc">${item.desc || 'Boneka Souvenir custom berkualitas tinggi berstandar SNI.'}</p>
+            </div>
+
+            <div class="card-back-specs">
+              <h4><i class="fas fa-shield-alt" style="color:var(--accent-brand);"></i> Spesifikasi:</h4>
+              <ul>
+                ${specsList.map(spec => `<li><i class="fas fa-check-circle"></i> ${spec}</li>`).join('')}
+              </ul>
+            </div>
+          </div>
+
+          <div class="card-back-footer">
             <a href="https://wa.me/6281385508611?text=Halo%20Admin%20Bonekaku,%20saya%20tertarik%20dengan%20produk%20${encodeURIComponent(item.title)}" 
                target="_blank" 
                class="btn btn-primary btn-sm btn-card-wa" 
                onclick="event.stopPropagation();">
-              <i class="fab fa-whatsapp"></i> Pesan WA
+              <i class="fab fa-whatsapp"></i> Order WA
             </a>
             <button class="btn btn-secondary btn-sm btn-card-details" 
                     onclick="openProductModal(${item.id}); event.stopPropagation();">
-              <i class="fas fa-expand"></i> Detail
+              <i class="fas fa-expand"></i> Lightbox
             </button>
           </div>
         </div>
