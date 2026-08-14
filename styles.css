@@ -7154,3 +7154,153 @@ textarea.form-control-custom {
     position: static;
   }
 }
+
+/* ==========================================
+   ULTRA-COMPREHENSIVE MOBILE RESPONSIVE MEDIA QUERIES
+   ========================================== */
+@media (max-width: 992px) {
+  .container {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  /* Header & Mobile Drawer Menu */
+  .header {
+    padding: 0.5rem 0;
+  }
+
+  .nav-wrapper {
+    justify-content: space-between;
+  }
+
+  .nav-menu {
+    position: fixed;
+    top: 68px;
+    left: 1.25rem;
+    right: 1.25rem;
+    background: rgba(255, 255, 255, 0.97);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    flex-direction: column;
+    padding: 1.25rem;
+    gap: 0.5rem;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.16);
+    border: 1px solid rgba(139, 90, 43, 0.18);
+    transform: translateY(-20px);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 999;
+  }
+
+  .nav-menu.active {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .nav-link {
+    width: 100%;
+    justify-content: center;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+  }
+
+  .mobile-menu-toggle {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba(139, 90, 43, 0.08);
+    border: 1px solid rgba(139, 90, 43, 0.15);
+    color: #3b2113;
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+
+  /* Hero Section Mobile */
+  .ss1498-intro-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    text-align: center;
+  }
+
+  .hero-brand-logo-img {
+    margin: 0 auto 1.1rem auto;
+  }
+
+  .ss1498-title-line {
+    margin: 0 auto 1.5rem auto;
+  }
+
+  .hero-actions-row {
+    justify-content: center;
+  }
+
+  .hero-actions-row .btn {
+    width: 100%;
+  }
+
+  /* Catalog Grid Mobile */
+  .catalog-products-grid {
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)) !important;
+    gap: 1.25rem !important;
+  }
+
+  /* Articles Bento Grid Mobile */
+  .articles-bento-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+
+  /* Bento Video Card Mobile */
+  .ss1499-split-bento-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+
+  /* Brand Story Mobile */
+  .ss1509-story-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2.5rem !important;
+  }
+
+  .ss1511-services-list {
+    grid-template-columns: 1fr !important;
+    gap: 1.75rem !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .subpage-title {
+    font-size: 2rem;
+  }
+
+  .subpage-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .ss1498-lead-text {
+    font-size: 1.1rem;
+  }
+
+  .ss1498-body-text {
+    font-size: 0.925rem;
+  }
+
+  .catalog-products-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .wa-floating-container {
+    bottom: 1.25rem;
+    right: 1.25rem;
+  }
+
+  .wa-order-chip {
+    display: none;
+  }
+}
