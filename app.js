@@ -1267,6 +1267,30 @@ function closeModal() {
 }
 
 /* --------------------------------------------------------------------------
+   IN-APP YOUTUBE VIDEO LIGHTBOX MODAL PLAYER
+   -------------------------------------------------------------------------- */
+function openVideoModal(videoId, title) {
+  const modal = document.getElementById('videoModal');
+  const iframe = document.getElementById('videoModalIframe');
+  const titleEl = document.getElementById('videoModalTitle');
+  if (!modal || !iframe) return;
+
+  if (titleEl && title) {
+    titleEl.innerHTML = `<i class="fab fa-youtube" style="color:#ef4444;"></i> ${title}`;
+  }
+
+  iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+  modal.classList.add('active');
+}
+
+function closeVideoModal() {
+  const modal = document.getElementById('videoModal');
+  const iframe = document.getElementById('videoModalIframe');
+  if (modal) modal.classList.remove('active');
+  if (iframe) iframe.src = '';
+}
+
+/* --------------------------------------------------------------------------
    FULL ARTICLE READER MODAL (REF SS_1574 & SS_1575)
    -------------------------------------------------------------------------- */
 let currentOpenArticleId = 1;

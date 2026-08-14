@@ -380,15 +380,15 @@
           </div>
         </div>
 
-        <!-- RIGHT COLUMN: CLEAN DIRECT YOUTUBE VIDEO SHOWCASE -->
+        <!-- RIGHT COLUMN: CLEAN IN-APP PLAYABLE YOUTUBE VIDEO SHOWCASE -->
         <div class="special-media-bento-card" style="background:transparent; border:none; box-shadow:none; padding:0;">
           <div class="video-responsive-wrapper">
-            <a href="https://youtu.be/2bfaB0CAz4I" target="_blank" class="yt-interactive-play-card" title="Klik untuk Memutar Video YouTube Bonekaku">
+            <div class="yt-interactive-play-card" onclick="openVideoModal('jfKfPfyJRdk', 'Video Profil &amp; Manufaktur Bonekaku')" title="Klik untuk Memutar Video Langsung di Web Bonekaku" style="cursor:pointer;">
               <img src="https://img.youtube.com/vi/2bfaB0CAz4I/hqdefault.jpg" alt="Bonekaku Store YouTube Video" class="yt-thumb-img">
               <div class="yt-play-icon-badge">
                 <i class="fab fa-youtube"></i>
               </div>
-            </a>
+            </div>
           </div>
         </div>
 
@@ -846,6 +846,21 @@
           </form>
         </div>
 
+      </div>
+    </div>
+  </div>
+
+  <!-- DEDICATED IN-APP YOUTUBE VIDEO LIGHTBOX MODAL -->
+  <div class="modal-overlay" id="videoModal">
+    <div class="modal-container modal-container-video">
+      <button class="modal-close-btn" onclick="closeVideoModal()">
+        <i class="fas fa-times"></i>
+      </button>
+      <div class="video-modal-header">
+        <h3 id="videoModalTitle"><i class="fab fa-youtube" style="color:#ef4444;"></i> Video Profil &amp; Manufaktur Bonekaku</h3>
+      </div>
+      <div class="video-modal-player-wrapper">
+        <iframe id="videoModalIframe" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
       </div>
     </div>
   </div>
