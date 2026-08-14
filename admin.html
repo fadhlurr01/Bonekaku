@@ -47,28 +47,48 @@
       width: 280px;
       background: linear-gradient(180deg, #180f08 0%, #291a0e 50%, #120904 100%);
       color: #ffffff;
-      padding: 2.25rem 1.5rem;
+      padding: 1.75rem 1.25rem 1.25rem 1.25rem;
       display: flex;
       flex-direction: column;
       border-right: 1px solid rgba(217, 119, 6, 0.25);
       box-shadow: 6px 0 35px rgba(0, 0, 0, 0.2);
       flex-shrink: 0;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      box-sizing: border-box;
+      z-index: 100;
     }
 
     .admin-brand {
       display: flex;
       flex-direction: column;
-      gap: 0.5rem;
-      margin-bottom: 2.5rem;
-      padding-bottom: 1.25rem;
+      gap: 0.65rem;
+      margin-bottom: 1.75rem;
+      padding-bottom: 1.15rem;
       border-bottom: 1px solid rgba(255, 255, 255, 0.12);
     }
 
-    .admin-brand img {
-      height: 38px;
+    .admin-brand-logo-card {
+      background: #ffffff;
+      padding: 0.65rem 1rem;
+      border-radius: 16px;
+      border: 1px solid rgba(217, 119, 6, 0.3);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease;
+    }
+
+    .admin-brand-logo-card:hover {
+      transform: scale(1.02);
+    }
+
+    .admin-brand-logo-card img {
+      height: 42px;
       width: auto;
       object-fit: contain;
-      filter: brightness(0) invert(1);
     }
 
     .admin-brand-pill {
@@ -86,6 +106,7 @@
       border-radius: var(--radius-full);
       border: 1px solid rgba(217, 119, 6, 0.3);
       width: fit-content;
+      margin: 0 auto;
     }
 
     .admin-nav-list {
@@ -95,6 +116,9 @@
       display: flex;
       flex-direction: column;
       gap: 0.65rem;
+      flex: 1;
+      overflow-y: auto;
+      padding-right: 0.25rem;
     }
 
     .admin-nav-item button {
@@ -129,10 +153,10 @@
     }
 
     .admin-nav-item.active button {
-      background: linear-gradient(135deg, rgba(217, 119, 6, 0.25) 0%, rgba(139, 90, 43, 0.2) 100%);
+      background: linear-gradient(135deg, rgba(217, 119, 6, 0.3) 0%, rgba(139, 90, 43, 0.25) 100%);
       color: #ffffff;
       border-color: rgba(217, 119, 6, 0.45);
-      box-shadow: 0 6px 20px rgba(217, 119, 6, 0.2);
+      box-shadow: 0 6px 20px rgba(217, 119, 6, 0.25);
     }
 
     .admin-nav-item.active button i {
@@ -142,8 +166,14 @@
 
     .admin-sidebar-footer {
       margin-top: auto;
-      padding-top: 1.5rem;
+      padding-top: 1rem;
       border-top: 1px solid rgba(255, 255, 255, 0.12);
+      position: sticky;
+      bottom: 0;
+      background: #120904;
+      z-index: 10;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     .btn-return-web {
@@ -154,20 +184,24 @@
       width: 100%;
       padding: 0.85rem;
       border-radius: var(--radius-full);
-      background: rgba(255, 255, 255, 0.1);
+      background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
       color: #ffffff;
-      font-family: var(--font-body);
+      font-family: var(--font-heading);
       font-size: 0.875rem;
-      font-weight: 700;
+      font-weight: 800;
       border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 4px 15px rgba(217, 119, 6, 0.35);
       transition: all 0.3s ease;
+      box-sizing: border-box;
+      text-decoration: none;
     }
 
     .btn-return-web:hover {
-      background: var(--accent-brand);
-      border-color: var(--accent-brand);
-      box-shadow: 0 6px 20px rgba(139, 90, 43, 0.4);
+      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+      border-color: var(--accent-gold);
+      box-shadow: 0 8px 25px rgba(217, 119, 6, 0.5);
       transform: translateY(-2px);
+      color: #ffffff;
     }
 
     /* Admin Main Content */
@@ -621,6 +655,82 @@
       transform: translateY(0);
       opacity: 1;
     }
+
+    /* --------------------------------------------------------------------------
+       RESPONSIVE MEDIA QUERIES FOR ADMIN PANEL & STICKY RETURN-WEB BUTTON
+       -------------------------------------------------------------------------- */
+    @media (max-width: 992px) {
+      .admin-layout {
+        flex-direction: column;
+      }
+
+      .admin-sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        padding: 1.25rem 1rem;
+        border-right: none;
+        border-bottom: 1px solid rgba(217, 119, 6, 0.25);
+      }
+
+      .admin-brand {
+        margin-bottom: 1rem;
+        padding-bottom: 0.85rem;
+      }
+
+      .admin-nav-list {
+        flex-direction: row;
+        overflow-x: auto;
+        gap: 0.5rem;
+        padding-bottom: 0.5rem;
+      }
+
+      .admin-nav-item button {
+        white-space: nowrap;
+        padding: 0.75rem 1rem;
+      }
+
+      .admin-sidebar-footer {
+        position: fixed !important;
+        bottom: 1rem !important;
+        left: 1rem !important;
+        right: 1rem !important;
+        width: calc(100% - 2rem) !important;
+        z-index: 99999 !important;
+        background: transparent !important;
+        border-top: none !important;
+        padding-top: 0 !important;
+        margin-top: 0 !important;
+      }
+
+      .btn-return-web {
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55) !important;
+        padding: 0.9rem 1.25rem !important;
+        backdrop-filter: blur(12px) !important;
+        border: 1.5px solid rgba(255, 255, 255, 0.3) !important;
+      }
+
+      .admin-main {
+        padding: 1.5rem 1rem 5.5rem 1rem !important;
+      }
+
+      .admin-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        padding: 1.25rem;
+      }
+
+      .admin-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 576px) {
+      .admin-stats-grid {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 <body>
@@ -637,7 +747,9 @@
     <!-- Left Executive Sidebar -->
     <aside class="admin-sidebar">
       <div class="admin-brand">
-        <img src="Logo-Baru-Bonekaku-600x163_eA0g.png" alt="Bonekaku Admin Portal Logo">
+        <div class="admin-brand-logo-card">
+          <img src="Logo-Baru-Bonekaku-600x163_eA0g.png" alt="Logo Bonekaku Enterprise">
+        </div>
         <span class="admin-brand-pill"><i class="fas fa-shield-halved"></i> Portal Executive</span>
       </div>
 
@@ -655,7 +767,7 @@
 
       <div class="admin-sidebar-footer">
         <a href="index.html" class="btn-return-web">
-          <i class="fas fa-arrow-left"></i> Kembali ke Web Live
+          <i class="fas fa-arrow-left"></i> Kembali ke Web
         </a>
       </div>
     </aside>
