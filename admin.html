@@ -63,32 +63,38 @@
     .admin-brand {
       display: flex;
       flex-direction: column;
-      gap: 0.65rem;
+      align-items: center;
+      gap: 0.75rem;
       margin-bottom: 1.75rem;
       padding-bottom: 1.15rem;
       border-bottom: 1px solid rgba(255, 255, 255, 0.12);
     }
 
-    .admin-brand-logo-card {
-      background: #ffffff;
-      padding: 0.65rem 1rem;
-      border-radius: 16px;
-      border: 1px solid rgba(217, 119, 6, 0.3);
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+    .admin-brand-logo-link {
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: transform 0.3s ease;
+      width: 100%;
+      padding: 0.5rem 0.75rem;
+      background: #ffffff;
+      border-radius: 16px;
+      border: 1px solid rgba(217, 119, 6, 0.3);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+      transition: all 0.3s ease;
+      box-sizing: border-box;
+      text-decoration: none;
     }
 
-    .admin-brand-logo-card:hover {
-      transform: scale(1.02);
+    .admin-brand-logo-link:hover {
+      transform: scale(1.03);
+      box-shadow: 0 8px 24px rgba(217, 119, 6, 0.35);
     }
 
-    .admin-brand-logo-card img {
-      height: 42px;
+    .admin-brand-logo-img {
+      height: 44px;
       width: auto;
       object-fit: contain;
+      max-width: 100%;
     }
 
     .admin-brand-pill {
@@ -747,9 +753,9 @@
     <!-- Left Executive Sidebar -->
     <aside class="admin-sidebar">
       <div class="admin-brand">
-        <div class="admin-brand-logo-card">
-          <img src="Logo-Baru-Bonekaku-600x163_eA0g.png" alt="Logo Bonekaku Enterprise">
-        </div>
+        <a href="index.html" class="admin-brand-logo-link" title="Kembali ke Utama">
+          <img src="Logo-Baru-Bonekaku-600x163_eA0g.png" alt="Logo Bonekaku Enterprise" class="admin-brand-logo-img">
+        </a>
         <span class="admin-brand-pill"><i class="fas fa-shield-halved"></i> Portal Executive</span>
       </div>
 
