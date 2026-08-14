@@ -3,6 +3,58 @@
    Pusat Souvenir dan Boneka Terlengkap #1 di Indonesia
    ========================================================================== */
 
+// Global Mobile Menu Handlers (Instantly Available)
+window.toggleMobileMenu = function(e) {
+  if (e) {
+    if (typeof e.stopPropagation === 'function') e.stopPropagation();
+  }
+  const mobileBtn = document.getElementById('mobileMenuBtn');
+  const navMenu = document.querySelector('.nav-menu');
+
+  if (!navMenu) return;
+
+  const isExpanded = navMenu.classList.contains('active') || navMenu.classList.contains('mobile-active') || navMenu.style.display === 'flex';
+
+  if (isExpanded) {
+    navMenu.classList.remove('active', 'mobile-active');
+    if (window.innerWidth <= 768) {
+      navMenu.style.display = 'none';
+    }
+    if (mobileBtn) {
+      const icon = mobileBtn.querySelector('i');
+      if (icon) icon.className = 'fas fa-bars';
+    }
+  } else {
+    navMenu.classList.add('active', 'mobile-active');
+    navMenu.style.display = 'flex';
+    if (mobileBtn) {
+      const icon = mobileBtn.querySelector('i');
+      if (icon) icon.className = 'fas fa-times';
+    }
+  }
+};
+
+window.navigateMobileMenu = function(url, e) {
+  if (e) {
+    if (typeof e.stopPropagation === 'function') e.stopPropagation();
+  }
+  const navMenu = document.querySelector('.nav-menu');
+  const mobileBtn = document.getElementById('mobileMenuBtn');
+  if (navMenu) {
+    navMenu.classList.remove('active', 'mobile-active');
+    if (window.innerWidth <= 768) {
+      navMenu.style.display = 'none';
+    }
+  }
+  if (mobileBtn) {
+    const icon = mobileBtn.querySelector('i');
+    if (icon) icon.className = 'fas fa-bars';
+  }
+  if (url && url !== '#' && !url.startsWith('javascript:')) {
+    window.location.href = url;
+  }
+};
+
 // --------------------------------------------------------------------------
 // 1. COMPLETE PRODUCT CATALOG DATABASE (100% ALL WORKSPACE PRODUCT ASSETS)
 // --------------------------------------------------------------------------
