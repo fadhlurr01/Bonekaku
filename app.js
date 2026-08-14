@@ -598,13 +598,18 @@ function initMobileMenu() {
 
   if (!mobileBtn || !navMenu) return;
 
-  mobileBtn.addEventListener('click', () => {
-    navMenu.classList.toggle('mobile-active');
-    const icon = mobileBtn.querySelector('i');
-    if (navMenu.classList.contains('mobile-active')) {
-      icon.className = 'fas fa-times';
+  mobileBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isExpanded = navMenu.classList.contains('active') || navMenu.classList.contains('mobile-active');
+
+    if (isExpanded) {
+      navMenu.classList.remove('active', 'mobile-active');
+      const icon = mobileBtn.querySelector('i');
+      if (icon) icon.className = 'fas fa-bars';
     } else {
-      icon.className = 'fas fa-bars';
+      navMenu.classList.add('active', 'mobile-active');
+      const icon = mobileBtn.querySelector('i');
+      if (icon) icon.className = 'fas fa-times';
     }
   });
 
@@ -612,10 +617,19 @@ function initMobileMenu() {
   const navLinks = document.querySelectorAll('.nav-link');
   navLinks.forEach(link => {
     link.addEventListener('click', () => {
-      navMenu.classList.remove('mobile-active');
+      navMenu.classList.remove('active', 'mobile-active');
       const icon = mobileBtn.querySelector('i');
       if (icon) icon.className = 'fas fa-bars';
     });
+  });
+
+  // Close mobile menu when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!navMenu.contains(e.target) && !mobileBtn.contains(e.target)) {
+      navMenu.classList.remove('active', 'mobile-active');
+      const icon = mobileBtn.querySelector('i');
+      if (icon) icon.className = 'fas fa-bars';
+    }
   });
 }
 

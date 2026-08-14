@@ -7228,10 +7228,11 @@ textarea.form-control-custom {
     z-index: 999;
   }
 
-  .nav-menu.active {
-    transform: translateY(0);
-    opacity: 1;
-    pointer-events: auto;
+  .nav-menu.active,
+  .nav-menu.mobile-active {
+    transform: translateY(0) !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
   }
 
   .nav-link {
