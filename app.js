@@ -802,7 +802,7 @@ function renderProducts(items, page = 1) {
           </div>
 
           <p class="list-row-desc">
-            <strong>Apa itu Boneka Souvenir atau Promosi?</strong> Boneka Souvenir atau Boneka Promosi adalah boneka yang dipesan untuk Souvenir ulang tahun, Souvenir Aqiqah, Souvenir satu bulanan, termasuk untuk promosi produk & perusahaan.
+            ${item.desc || 'Boneka Souvenir atau Boneka Promosi adalah boneka yang dipesan untuk souvenir ulang tahun, aqiqah, corporate giftset, dan promosi brand.'}
           </p>
 
           <a href="#" onclick="openProductModal(${item.id}); return false;" class="list-row-readmore">
@@ -825,8 +825,6 @@ function renderProducts(items, page = 1) {
     }).join('');
   } else if (currentCatalogViewMode === 'compact') {
     grid.innerHTML = pageItems.map(item => {
-      const sizeVal = (item.size && item.size !== 'undefined') ? item.size : '12 cm';
-      const moqVal = (item.moq && item.moq !== 'undefined') ? item.moq : 'Min 50 Pcs';
       const priceVal = (item.priceRange && item.priceRange !== 'undefined') ? item.priceRange : 'Rp 35.000 – 65.000';
 
       return `
@@ -850,17 +848,10 @@ function renderProducts(items, page = 1) {
       const specsList = item.specs && Array.isArray(item.specs) ? item.specs : ["Bahan Super Soft Yelvo", "Isian Dakron Silicon Grade A", "100% Sertifikasi SNI"];
 
       return `
-    <div class="bento-card product-card-ss reveal-up" data-category="${item.category}">
-      <div class="card-image-box" onclick="openProductModal(${item.id})">
-        <img src="${item.image}" alt="${item.title}" class="product-img" onerror="this.onerror=null; this.src='Logo-Baru-Bonekaku-600x163_eA0g.png';">
-        <span class="card-category-badge"><i class="fas fa-tag"></i> ${item.categoryLabel}</span>
-      </div>
-
-      <div class="card-content-box">
-        <h3 class="product-title-ss" onclick="openProductModal(${item.id})">${item.title}</h3>
-        
-        <!-- FRONT SIDE (IMAGE & BADGES) -->
-        <div class="product-card-front">
+    <div class="product-card reveal-up" data-category="${item.category}">
+      <div class="product-card-inner">
+        <!-- FRONT SIDE -->
+        <div class="product-card-front" onclick="openProductModal(${item.id})">
           <div class="product-img-wrapper">
             <img src="${item.image}" alt="${item.title}" class="product-img" onerror="this.onerror=null; this.src='Logo-Baru-Bonekaku-600x163_eA0g.png';">
             <span class="product-card-store-watermark">BONEKAKU_STORE</span>
@@ -871,7 +862,7 @@ function renderProducts(items, page = 1) {
           </div>
         </div>
 
-        <!-- BACK SIDE (FLIPPED DETAILS & DESCRIPTION) -->
+        <!-- BACK SIDE -->
         <div class="product-card-back">
           <div class="card-back-header">
             <span class="card-category-badge"><i class="fas fa-cube"></i> ${item.categoryLabel}</span>
@@ -910,19 +901,21 @@ function renderProducts(items, page = 1) {
             </a>
             <button class="btn btn-secondary btn-sm btn-card-modal" 
                     onclick="openProductModal(${item.id}); event.stopPropagation();">
-              <i class="fas fa-expand"></i> Modal Detail
+              <i class="fas fa-expand"></i> Detail
             </button>
           </div>
         </div>
-
       </div>
     </div>
   `;
-  }).join('');
+    }).join('');
+  }
 
-  // Re-attach scroll reveal observer
+  if (pagContainer) {
+    renderPaginationUI(pagContainer, items.length, currentCatalogPage, totalPages, CATALOG_PAGE_SIZE, 'changeCatalogPage');
+  }
+
   initScrollRevealObserver();
-  // Re-attach 3D card tilt
   initCard3DTilt();
 }
 
@@ -1509,28 +1502,29 @@ function openArticleDetailModal(articleId) {
   if (commentTitle) commentTitle.innerText = article.title;
 
   if (bodyEl) {
+    const fullBody = article.body || article.summary || '';
     bodyEl.innerHTML = `
       <p class="lead-paragraph">
-        <strong>${article.summary || article.title}</strong> Industri pembuatan souvenir plushie dan boneka custom kini telah berkembang pesat dengan berbagai inovasi teknik serat kain serta standar manufaktur otomatis.
+        <strong>${article.title}</strong> &mdash; ${article.summary || fullBody}
       </p>
 
-      <h3>1. Memahami Karakteristik Bahan Kain (Yelvo vs Velboa)</h3>
+      <h3>1. Ringkasan & Pendahuluan Utama</h3>
       <p>
-        Dalam memilih bahan kain untuk merchandise atau maskot corporate, aspek utama yang perlu diperhatikan adalah kerapatan serat (density), elastisitas, dan kelembutan permukaan. Kain <strong>Yelvo Super Soft</strong> memiliki tekstur yang sangat halus dengan peregangan 2-arah yang sempurna untuk membungkus lekukan maskot 3D. Sementara kain Velboa memiliki karakter tekstur yang lebih pendek dan sedikit lebih kaku, ideal untuk bantal karakter.
+        ${fullBody} Industri pembuatan souvenir plushie, bantal custom, dan boneka maskot promosi dari Bonekaku Enterprise selalu mengedepankan kualitas serat kain terbaik serta akurasi warna brand yang presisi.
       </p>
 
       <blockquote class="article-quote">
-        <i class="fas fa-quote-left"></i> Standar mutu Bonekaku memastikan 100% bahan baku kain telah lolos uji laboratorium sertifikasi resmi SNI (Standar Nasional Indonesia) sehingga bebas zat pewarna beracun dan aman bagi anak-anak.
+        <i class="fas fa-quote-left"></i> Standar produksi Bonekaku memastikan 100% bahan baku kain telah lolos uji laboratorium sertifikasi resmi SNI (Standar Nasional Indonesia) sehingga bebas zat pewarna beracun dan aman bagi semua usia.
       </blockquote>
 
-      <h3>2. Kepresisian Pembordiran Komputer HD</h3>
+      <h3>2. Keunggulan Material & Standar Manufaktur Bonekaku</h3>
       <p>
-        Setiap logo perusahaan, tulisan brand, maupun detail ekspresi wajah maskot dikerjakan menggunakan mesin pembordiran komputer multi-head otomatis dengan kerapatan jarum tinggi. Hasil pembordiran dijamin rapi, simetris, tidak mudah terlepas, serta memiliki ketahanan warna hingga bertahun-tahun.
+        Setiap pesanan diproses menggunakan bahan kain <strong>Yelvo Super Soft</strong> bertekstur sangat halus dengan isian 100% serat kapas <strong>Dakron Silicon Grade A</strong> murni yang anti-kempes, membal, dan bebas dari debu alergen.
       </p>
 
-      <h3>3. Isian Kapas Dakron Silicon Grade A</h3>
+      <h3>3. Kepresisian Pembordiran Komputer HD & Pengemasan Rapi</h3>
       <p>
-        Untuk menjaga keempukan dan bentuk boneka tetap kokoh dan anti-kempes, Bonekaku mengunakan 100% serat kapas <strong>Dakron Silicon Grade A</strong> murni. Kapas ini sangat membal, higienis, dan tidak menyerap kelembaban udara sehingga bebas dari bau apek atau jamur.
+        Logo perusahaan maupun detail ekspresi maskot dibordir menggunakan mesin pembordiran komputer multi-head otomatis berkerapatan jarum tinggi, memastikan hasil akhir presisi, simetris, rapi, dan tahan lama untuk memperkuat citra positif bisnis Anda.
       </p>
     `;
   }
@@ -1753,5 +1747,4 @@ function initTestimonialCarousel() {
 
   showSlide(0);
   startTimer();
-}
 }

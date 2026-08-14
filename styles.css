@@ -7689,3 +7689,157 @@ textarea.form-control-custom {
   margin-top: 1rem;
   border-radius: 0 0 16px 16px;
 }
+
+/* ==========================================
+   ULTRA-MODERN YOUTUBE SHOWCASE CARD STYLES
+   ========================================== */
+.modern-yt-showcase-card {
+  background: #ffffff !important;
+  border: 1px solid rgba(217, 119, 6, 0.22) !important;
+  border-radius: 24px !important;
+  padding: 1.25rem !important;
+  box-shadow: 0 16px 40px rgba(60, 35, 15, 0.08) !important;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1rem !important;
+}
+
+.modern-yt-showcase-card:hover {
+  transform: translateY(-6px) !important;
+  box-shadow: 0 24px 50px rgba(217, 119, 6, 0.16) !important;
+  border-color: var(--accent-brand) !important;
+}
+
+.yt-showcase-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.25rem 0.5rem;
+}
+
+.yt-badge-live {
+  font-family: var(--font-heading);
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #1e293b;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.yt-badge-hd {
+  background: rgba(217, 119, 6, 0.12);
+  color: #b45309;
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 0.25rem 0.65rem;
+  border-radius: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.yt-interactive-play-card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.yt-thumb-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.yt-interactive-play-card:hover .yt-thumb-img {
+  transform: scale(1.08);
+}
+
+.yt-play-icon-badge {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 68px;
+  height: 68px;
+  background: rgba(239, 68, 68, 0.95);
+  color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  box-shadow: 0 8px 30px rgba(239, 68, 68, 0.5);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 3;
+}
+
+.yt-interactive-play-card:hover .yt-play-icon-badge {
+  transform: translate(-50%, -50%) scale(1.15);
+  background: #dc2626;
+  box-shadow: 0 12px 35px rgba(220, 38, 38, 0.7);
+}
+
+.yt-card-gradient-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(15, 23, 42, 0.8) 0%, transparent 60%);
+  z-index: 1;
+}
+
+.yt-card-bottom-info {
+  position: absolute;
+  bottom: 0.85rem;
+  left: 1rem;
+  right: 1rem;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.yt-play-subtext {
+  color: #ffffff;
+  font-family: var(--font-heading);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.yt-showcase-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.35rem 0.5rem;
+}
+
+.yt-showcase-footer h4 {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #2a180e;
+  margin: 0;
+}
+
+.yt-showcase-footer p {
+  font-size: 0.88rem;
+  color: #64748b;
+  margin: 0;
+}
+
+.yt-play-btn {
+  margin-top: 0.35rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  font-weight: 800;
+  border-radius: 12px;
+}
