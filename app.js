@@ -916,9 +916,9 @@ function renderProducts(items, page = 1) {
             </div>
 
             <div class="card-back-specs">
-              <h4><i class="fas fa-shield-alt" style="color:var(--accent-gold);"></i> Keunggulan Produk:</h4>
+              <h4><i class="fas fa-shield-alt" style="color:var(--accent-gold);"></i> Keunggulan Utama:</h4>
               <ul>
-                ${specsList.map(spec => `<li><i class="fas fa-check-circle" style="color:#10b981;"></i> ${spec}</li>`).join('')}
+                ${specsList.slice(0, 2).map(spec => `<li><i class="fas fa-check-circle" style="color:#10b981;"></i> ${spec}</li>`).join('')}
               </ul>
             </div>
           </div>

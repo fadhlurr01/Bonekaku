@@ -8090,7 +8090,7 @@ textarea.form-control-custom {
   color: #ffffff !important;
 }
 
-/* BACK CARD - ULTRA ELEGANT DARK EXECUTIVE FLIP SIDE */
+/* BACK CARD - ULTRA ELEGANT DARK EXECUTIVE FLIP SIDE (ZERO-SCROLL PERFECT FIT) */
 .product-card-back {
   background: linear-gradient(145deg, #180e08 0%, #291a0e 100%) !important;
   border: 1.5px solid rgba(217, 119, 6, 0.35) !important;
@@ -8098,10 +8098,11 @@ textarea.form-control-custom {
   transform: rotateY(180deg) !important;
   display: flex !important;
   flex-direction: column !important;
-  padding: 1.25rem !important;
-  gap: 0.75rem !important;
+  padding: 1.15rem !important;
+  gap: 0.65rem !important;
   border-radius: 20px !important;
   color: #ffffff !important;
+  overflow: hidden !important;
 }
 
 .card-back-header {
@@ -8109,7 +8110,7 @@ textarea.form-control-custom {
   align-items: center !important;
   justify-content: space-between !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
-  padding-bottom: 0.6rem !important;
+  padding-bottom: 0.5rem !important;
 }
 
 .card-category-badge {
@@ -8147,34 +8148,38 @@ textarea.form-control-custom {
 .card-back-body {
   display: flex !important;
   flex-direction: column !important;
-  gap: 0.65rem !important;
+  gap: 0.55rem !important;
   flex-grow: 1 !important;
-  overflow-y: auto !important;
-  padding-right: 0.25rem !important;
+  overflow: hidden !important;
+  padding-right: 0 !important;
+}
+
+.card-back-body::-webkit-scrollbar {
+  display: none !important;
 }
 
 .card-back-title {
   font-family: var(--font-heading) !important;
-  font-size: 1.1rem !important;
+  font-size: 1.05rem !important;
   font-weight: 800 !important;
   color: #ffffff !important;
   margin: 0 !important;
-  line-height: 1.25 !important;
+  line-height: 1.2 !important;
 }
 
 .card-back-meta {
   display: flex !important;
   flex-wrap: wrap !important;
-  gap: 0.4rem !important;
+  gap: 0.35rem !important;
 }
 
 .card-back-meta .meta-pill {
   background: rgba(255, 255, 255, 0.08) !important;
   color: #fef08a !important;
   border: 1px solid rgba(254, 240, 138, 0.3) !important;
-  font-size: 0.775rem !important;
+  font-size: 0.75rem !important;
   font-weight: 800 !important;
-  padding: 0.3rem 0.65rem !important;
+  padding: 0.25rem 0.55rem !important;
   border-radius: 8px !important;
 }
 
@@ -8186,15 +8191,15 @@ textarea.form-control-custom {
 
 .card-back-desc-box {
   background: rgba(0, 0, 0, 0.35) !important;
-  padding: 0.65rem 0.85rem !important;
+  padding: 0.55rem 0.75rem !important;
   border-radius: 12px !important;
   border: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
 
 .card-back-desc {
-  font-size: 0.825rem !important;
+  font-size: 0.8rem !important;
   color: rgba(255, 255, 255, 0.88) !important;
-  line-height: 1.45 !important;
+  line-height: 1.35 !important;
   margin: 0 !important;
 }
 
