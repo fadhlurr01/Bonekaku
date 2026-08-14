@@ -722,19 +722,35 @@ function renderPaginationUI(container, totalItems, currentPage, totalPages, page
   let pageBtnsHtml = '';
 
   // Previous button
-  pageBtnsHtml += `<button class="page-btn" ${currentPage === 1 ? 'disabled' : ''} onclick="${callbackFuncName}(${currentPage - 1})"><i class="fas fa-chevron-left"></i> Prev</button>`;
+  pageBtnsHtml += `<button class="page-btn page-btn-prev" ${currentPage === 1 ? 'disabled' : ''} onclick="${callbackFuncName}(${currentPage - 1})"><i class="fas fa-chevron-left"></i> Prev</button>`;
 
-  // Page number buttons
-  for (let i = 1; i <= totalPages; i++) {
+  // Smart page numbers window for mobile friendliness (shows max 3 adjacent pages)
+  let startPage = Math.max(1, currentPage - 1);
+  let endPage = Math.min(totalPages, currentPage + 1);
+
+  if (currentPage === 1) endPage = Math.min(totalPages, 3);
+  if (currentPage === totalPages) startPage = Math.max(1, totalPages - 2);
+
+  if (startPage > 1) {
+    pageBtnsHtml += `<button class="page-btn" onclick="${callbackFuncName}(1)">1</button>`;
+    if (startPage > 2) pageBtnsHtml += `<span class="pagination-dots">..</span>`;
+  }
+
+  for (let i = startPage; i <= endPage; i++) {
     pageBtnsHtml += `<button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="${callbackFuncName}(${i})">${i}</button>`;
   }
 
+  if (endPage < totalPages) {
+    if (endPage < totalPages - 1) pageBtnsHtml += `<span class="pagination-dots">..</span>`;
+    pageBtnsHtml += `<button class="page-btn" onclick="${callbackFuncName}(${totalPages})">${totalPages}</button>`;
+  }
+
   // Next button
-  pageBtnsHtml += `<button class="page-btn" ${currentPage === totalPages ? 'disabled' : ''} onclick="${callbackFuncName}(${currentPage + 1})">Next <i class="fas fa-chevron-right"></i></button>`;
+  pageBtnsHtml += `<button class="page-btn page-btn-next" ${currentPage === totalPages ? 'disabled' : ''} onclick="${callbackFuncName}(${currentPage + 1})">Next <i class="fas fa-chevron-right"></i></button>`;
 
   container.innerHTML = `
     <div class="pagination-info">
-      Menampilkan <strong>${startItem} – ${endItem}</strong> dari <strong>${totalItems}</strong> data (Halaman ${currentPage}/${totalPages})
+      Menampilkan <strong>${startItem} – ${endItem}</strong> dari <strong>${totalItems}</strong> data
     </div>
     <div class="pagination-controls">
       ${pageBtnsHtml}
