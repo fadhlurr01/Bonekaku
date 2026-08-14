@@ -1391,7 +1391,13 @@ function openProductModal(productId) {
     "Custom Logo Embroidery"
   ];
 
-  if (modalImg) modalImg.src = product.image;
+  if (modalImg) {
+    modalImg.src = product.image || 'Logo-Baru-Bonekaku-600x163_eA0g.png';
+    modalImg.onerror = function() {
+      this.onerror = null;
+      this.src = 'Logo-Baru-Bonekaku-600x163_eA0g.png';
+    };
+  }
   if (modalTitle) modalTitle.innerText = product.title;
   if (modalCategory) modalCategory.innerText = product.categoryLabel || "Most Favorite";
 
@@ -1410,7 +1416,11 @@ function openProductModal(productId) {
     modalWaBtn.href = `https://wa.me/6281385508611?text=${waText}`;
   }
 
-  if (modal) modal.classList.add('active');
+  if (modal) {
+    modal.classList.add('active');
+    const container = modal.querySelector('.modal-container-rich');
+    if (container) container.scrollTop = 0;
+  }
 }
 
 function openImageModal(imgSrc, title, desc) {

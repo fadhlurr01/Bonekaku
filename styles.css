@@ -6588,13 +6588,25 @@ textarea.form-control-custom {
     height: 200px;
   }
   .modal-container-rich {
-    grid-template-columns: 1fr;
-    width: 95%;
+    grid-template-columns: 1fr !important;
+    width: 95% !important;
+    max-height: 92vh !important;
+    padding: 1.25rem !important;
+    border-radius: 24px !important;
   }
   .modal-left-gallery {
-    border-right: none;
-    border-bottom: 1px solid rgba(139, 90, 43, 0.16);
-    border-radius: 28px 28px 0 0;
+    border-right: none !important;
+    border-bottom: 1px solid rgba(139, 90, 43, 0.16) !important;
+    border-radius: 20px 20px 0 0 !important;
+    padding: 0.75rem !important;
+  }
+  .modal-left-gallery .modal-img-wrapper {
+    height: 220px !important;
+    max-height: 220px !important;
+    padding: 0.5rem !important;
+  }
+  .modal-body-content {
+    padding: 1rem 0.25rem !important;
   }
   .modal-specs-section .spec-list {
     grid-template-columns: 1fr;
