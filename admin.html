@@ -785,6 +785,9 @@
               <!-- Rendered Dynamically via JS -->
             </tbody>
           </table>
+          <div class="admin-pagination-bar" id="adminCatalogPagination">
+            <!-- Rendered Dynamically via JS (20 per page) -->
+          </div>
         </div>
       </div>
 
@@ -817,6 +820,9 @@
               <!-- Rendered Dynamically via JS -->
             </tbody>
           </table>
+          <div class="admin-pagination-bar" id="adminArticlesPagination">
+            <!-- Rendered Dynamically via JS (20 per page) -->
+          </div>
         </div>
       </div>
 
@@ -1017,12 +1023,65 @@
       document.getElementById('pageHeadingTitle').innerText = headings[tabId] || 'Admin Dashboard';
     }
 
+    /* ---------------- CATALOG & ARTICLE 20-ITEMS PAGINATION ---------------- */
+    let adminCatalogPage = 1;
+    let adminArticlePage = 1;
+    const ADMIN_PAGE_SIZE = 20;
+
+    function renderAdminPaginationUI(container, totalItems, currentPage, totalPages, pageSize, callbackFuncName) {
+      if (!container) return;
+
+      if (totalItems <= pageSize) {
+        container.innerHTML = `<div class="pagination-info" style="color:rgba(255,255,255,0.7); font-size:0.85rem;">Menampilkan semua <strong>${totalItems}</strong> data</div>`;
+        return;
+      }
+
+      const startItem = (currentPage - 1) * pageSize + 1;
+      const endItem = Math.min(currentPage * pageSize, totalItems);
+
+      let pageBtnsHtml = '';
+      pageBtnsHtml += `<button class="page-btn" ${currentPage === 1 ? 'disabled' : ''} onclick="${callbackFuncName}(${currentPage - 1})"><i class="fas fa-chevron-left"></i> Prev</button>`;
+
+      for (let i = 1; i <= totalPages; i++) {
+        pageBtnsHtml += `<button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="${callbackFuncName}(${i})">${i}</button>`;
+      }
+
+      pageBtnsHtml += `<button class="page-btn" ${currentPage === totalPages ? 'disabled' : ''} onclick="${callbackFuncName}(${currentPage + 1})">Next <i class="fas fa-chevron-right"></i></button>`;
+
+      container.innerHTML = `
+        <div class="pagination-info" style="color:rgba(255,255,255,0.7); font-size:0.85rem;">
+          Menampilkan <strong>${startItem} – ${endItem}</strong> dari <strong>${totalItems}</strong> data (Halaman ${currentPage}/${totalPages})
+        </div>
+        <div class="pagination-controls">
+          ${pageBtnsHtml}
+        </div>
+      `;
+    }
+
+    function changeAdminCatalogPage(newPage) {
+      renderCatalogAdminTable(adminProducts, newPage);
+    }
+
+    function changeAdminArticlePage(newPage) {
+      renderArticlesAdminTable(adminArticles, newPage);
+    }
+
     /* ---------------- CATALOG MANAGEMENT ---------------- */
-    function renderCatalogAdminTable(items = adminProducts) {
+    function renderCatalogAdminTable(items = adminProducts, page = 1) {
+      adminCatalogPage = page;
       const tbody = document.getElementById('catalogAdminTableBody');
+      const pagContainer = document.getElementById('adminCatalogPagination');
       if (!tbody) return;
 
-      tbody.innerHTML = items.map(p => `
+      const totalItems = items.length;
+      const totalPages = Math.ceil(totalItems / ADMIN_PAGE_SIZE) || 1;
+      if (adminCatalogPage > totalPages) adminCatalogPage = totalPages;
+      if (adminCatalogPage < 1) adminCatalogPage = 1;
+
+      const startIdx = (adminCatalogPage - 1) * ADMIN_PAGE_SIZE;
+      const pageItems = items.slice(startIdx, startIdx + ADMIN_PAGE_SIZE);
+
+      tbody.innerHTML = pageItems.map(p => `
         <tr>
           <td><img src="${p.image}" class="table-img-thumb" alt="${p.title}" onerror="this.src='Logo-Baru-Bonekaku-600x163_eA0g.png';"></td>
           <td><strong>${p.title}</strong></td>
@@ -1037,6 +1096,10 @@
           </td>
         </tr>
       `).join('');
+
+      if (pagContainer) {
+        renderAdminPaginationUI(pagContainer, totalItems, adminCatalogPage, totalPages, ADMIN_PAGE_SIZE, 'changeAdminCatalogPage');
+      }
     }
 
     function filterCatalogAdminTable() {
@@ -1128,11 +1191,21 @@
     }
 
     /* ---------------- ARTICLE MANAGEMENT ---------------- */
-    function renderArticlesAdminTable(items = adminArticles) {
+    function renderArticlesAdminTable(items = adminArticles, page = 1) {
+      adminArticlePage = page;
       const tbody = document.getElementById('articlesAdminTableBody');
+      const pagContainer = document.getElementById('adminArticlesPagination');
       if (!tbody) return;
 
-      tbody.innerHTML = items.map(a => `
+      const totalItems = items.length;
+      const totalPages = Math.ceil(totalItems / ADMIN_PAGE_SIZE) || 1;
+      if (adminArticlePage > totalPages) adminArticlePage = totalPages;
+      if (adminArticlePage < 1) adminArticlePage = 1;
+
+      const startIdx = (adminArticlePage - 1) * ADMIN_PAGE_SIZE;
+      const pageItems = items.slice(startIdx, startIdx + ADMIN_PAGE_SIZE);
+
+      tbody.innerHTML = pageItems.map(a => `
         <tr>
           <td><img src="${a.image}" class="table-img-thumb" alt="${a.title}" onerror="this.src='Logo-Baru-Bonekaku-600x163_eA0g.png';"></td>
           <td><strong>${a.title}</strong></td>
@@ -1148,6 +1221,10 @@
           </td>
         </tr>
       `).join('');
+
+      if (pagContainer) {
+        renderAdminPaginationUI(pagContainer, totalItems, adminArticlePage, totalPages, ADMIN_PAGE_SIZE, 'changeAdminArticlePage');
+      }
     }
 
     function filterArticlesAdminTable() {

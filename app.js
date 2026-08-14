@@ -447,8 +447,13 @@ document.addEventListener('DOMContentLoaded', () => {
   initAutoProductSlider();
 });
 
-function renderPublicArticles() {
+let currentPublicArticlePage = 1;
+const PUBLIC_ARTICLE_PAGE_SIZE = 20;
+
+function renderPublicArticles(page = 1) {
+  currentPublicArticlePage = page;
   const grid = document.getElementById('articlesGrid');
+  const pagContainer = document.getElementById('articlesPagination');
   if (!grid) return;
 
   const articles = getLiveArticlesData();
@@ -461,10 +466,18 @@ function renderPublicArticles() {
         <p style="font-size: 1.15rem; font-weight:700;">Belum ada artikel yang dipublikasikan.</p>
       </div>
     `;
+    if (pagContainer) pagContainer.innerHTML = '';
     return;
   }
 
-  grid.innerHTML = publishedArticles.map((a, idx) => `
+  const totalPages = Math.ceil(publishedArticles.length / PUBLIC_ARTICLE_PAGE_SIZE) || 1;
+  if (currentPublicArticlePage > totalPages) currentPublicArticlePage = totalPages;
+  if (currentPublicArticlePage < 1) currentPublicArticlePage = 1;
+
+  const startIdx = (currentPublicArticlePage - 1) * PUBLIC_ARTICLE_PAGE_SIZE;
+  const pageArticles = publishedArticles.slice(startIdx, startIdx + PUBLIC_ARTICLE_PAGE_SIZE);
+
+  grid.innerHTML = pageArticles.map((a, idx) => `
     <div class="article-card reveal-up delay-${(idx % 3) + 1}" onclick="window.location.href='artikel-detail.html?id=${a.id}'">
       <div class="article-img-wrapper">
         <img src="${a.image}" alt="${a.title}" class="article-img" onerror="this.onerror=null; this.src='Logo-Baru-Bonekaku-600x163_eA0g.png';">
@@ -480,6 +493,16 @@ function renderPublicArticles() {
       </div>
     </div>
   `).join('');
+
+  if (pagContainer) {
+    renderPaginationUI(pagContainer, publishedArticles.length, currentPublicArticlePage, totalPages, PUBLIC_ARTICLE_PAGE_SIZE, 'changePublicArticlePage');
+  }
+}
+
+function changePublicArticlePage(newPage) {
+  renderPublicArticles(newPage);
+  const grid = document.getElementById('articlesGrid');
+  if (grid) grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 function initScrollRevealObserver() {
@@ -635,10 +658,63 @@ function initMobileMenu() {
 
 // --------------------------------------------------------------------------
 // 6. PRODUCT CATALOG & 3D TILT EFFECT
-// --------------------------------------------------------------------------
-function renderProducts(items) {
+// -----------------------------------------------------------let currentCatalogPage = 1;
+let currentActiveCatalogItems = [];
+const CATALOG_PAGE_SIZE = 20;
+
+function renderPaginationUI(container, totalItems, currentPage, totalPages, pageSize, callbackFuncName) {
+  if (!container) return;
+
+  if (totalItems <= pageSize) {
+    container.innerHTML = `
+      <div class="pagination-info">Menampilkan semua <strong>${totalItems}</strong> data</div>
+    `;
+    return;
+  }
+
+  const startItem = (currentPage - 1) * pageSize + 1;
+  const endItem = Math.min(currentPage * pageSize, totalItems);
+
+  let pageBtnsHtml = '';
+
+  // Previous button
+  pageBtnsHtml += `<button class="page-btn" ${currentPage === 1 ? 'disabled' : ''} onclick="${callbackFuncName}(${currentPage - 1})"><i class="fas fa-chevron-left"></i> Prev</button>`;
+
+  // Page number buttons
+  for (let i = 1; i <= totalPages; i++) {
+    pageBtnsHtml += `<button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="${callbackFuncName}(${i})">${i}</button>`;
+  }
+
+  // Next button
+  pageBtnsHtml += `<button class="page-btn" ${currentPage === totalPages ? 'disabled' : ''} onclick="${callbackFuncName}(${currentPage + 1})">Next <i class="fas fa-chevron-right"></i></button>`;
+
+  container.innerHTML = `
+    <div class="pagination-info">
+      Menampilkan <strong>${startItem} – ${endItem}</strong> dari <strong>${totalItems}</strong> data (Halaman ${currentPage}/${totalPages})
+    </div>
+    <div class="pagination-controls">
+      ${pageBtnsHtml}
+    </div>
+  `;
+}
+
+function changeCatalogPage(newPage) {
+  renderProducts(currentActiveCatalogItems, newPage);
   const grid = document.getElementById('productsGrid');
+  if (grid) grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function renderProducts(items, page = 1) {
+  currentCatalogPage = page;
+  currentActiveCatalogItems = items;
+  const grid = document.getElementById('productsGrid');
+  const pagContainer = document.getElementById('catalogPagination');
   if (!grid) return;
+
+  const totalCountEl = document.getElementById('productTotalCountText');
+  if (totalCountEl) {
+    totalCountEl.innerText = `${items.length} Produk`;
+  }
 
   if (items.length === 0) {
     grid.innerHTML = `
@@ -648,11 +724,19 @@ function renderProducts(items) {
         <p style="font-size:0.9rem; color:var(--text-secondary);">Coba gunakan kata kunci lain seperti "Bear", "Wisuda", atau "Maskot".</p>
       </div>
     `;
+    if (pagContainer) pagContainer.innerHTML = '';
     return;
   }
 
+  const totalPages = Math.ceil(items.length / CATALOG_PAGE_SIZE) || 1;
+  if (currentCatalogPage > totalPages) currentCatalogPage = totalPages;
+  if (currentCatalogPage < 1) currentCatalogPage = 1;
+
+  const startIdx = (currentCatalogPage - 1) * CATALOG_PAGE_SIZE;
+  const pageItems = items.slice(startIdx, startIdx + CATALOG_PAGE_SIZE);
+
   if (currentCatalogViewMode === 'list') {
-    grid.innerHTML = items.map(item => {
+    grid.innerHTML = pageItems.map(item => {
       const sizeVal = (item.size && item.size !== 'undefined') ? item.size : '12 cm';
       const moqVal = (item.moq && item.moq !== 'undefined') ? item.moq : 'Min 50 Pcs';
       const priceVal = (item.priceRange && item.priceRange !== 'undefined') ? item.priceRange : 'Rp 35.000 – 65.000';
@@ -686,29 +770,49 @@ function renderProducts(items) {
           <button class="btn btn-secondary btn-list-details" onclick="openProductModal(${item.id})">
             Details <i class="fas fa-arrow-circle-right"></i>
           </button>
-          <a href="https://wa.me/6281385508611?text=Halo%20Admin,%20saya%20tertarik%20dengan%20produk%20${encodeURIComponent(item.title)}" 
+          <a href="https://wa.me/6281385508611?text=Halo%20Admin%20Bonekaku,%20saya%20tertarik%20dengan%20produk%20${encodeURIComponent(item.title)}" 
              target="_blank" 
              class="btn btn-primary btn-list-wa">
-            <i class="fab fa-whatsapp"></i> Pesan WA
+            <i class="fab fa-whatsapp"></i> Order via WA
           </a>
         </div>
       </div>
       `;
     }).join('');
+  } else if (currentCatalogViewMode === 'compact') {
+    grid.innerHTML = pageItems.map(item => {
+      const sizeVal = (item.size && item.size !== 'undefined') ? item.size : '12 cm';
+      const moqVal = (item.moq && item.moq !== 'undefined') ? item.moq : 'Min 50 Pcs';
+      const priceVal = (item.priceRange && item.priceRange !== 'undefined') ? item.priceRange : 'Rp 35.000 – 65.000';
 
-    initScrollRevealObserver();
-    return;
-  }
+      return `
+      <div class="product-card-compact reveal-up" onclick="openProductModal(${item.id})">
+        <div class="compact-img-box">
+          <img src="${item.image}" alt="${item.title}" class="compact-img" onerror="this.onerror=null; this.src='Logo-Baru-Bonekaku-600x163_eA0g.png';">
+          <span class="card-category-badge"><i class="fas fa-tag"></i> ${item.categoryLabel}</span>
+        </div>
+        <div class="compact-info">
+          <h4 class="compact-title">${item.title}</h4>
+          <span class="compact-price">${priceVal}</span>
+        </div>
+      </div>
+      `;
+    }).join('');
+  } else {
+    grid.innerHTML = pageItems.map(item => {
+      const sizeVal = (item.size && item.size !== 'undefined') ? item.size : '12 cm';
+      const moqVal = (item.moq && item.moq !== 'undefined') ? item.moq : 'Min 50 Pcs';
+      const priceVal = (item.priceRange && item.priceRange !== 'undefined') ? item.priceRange : 'Rp 35.000 – 65.000';
 
-  grid.innerHTML = items.map(item => {
-    const sizeVal = (item.size && item.size !== 'undefined') ? item.size : '20cm';
-    const moqVal = (item.moq && item.moq !== 'undefined') ? item.moq : 'Min 50 Pcs';
-    const priceVal = (item.priceRange && item.priceRange !== 'undefined') ? item.priceRange : 'Rp 45.000 – 75.000';
-    const specsList = (item.specs && item.specs.length) ? item.specs : ["Bahan Super Soft Yelvo", "Isian Dakron Silicon Grade A", "Standar SNI Resmi", "Custom Logo Embroidery"];
+      return `
+    <div class="bento-card product-card-ss reveal-up" data-category="${item.category}">
+      <div class="card-image-box" onclick="openProductModal(${item.id})">
+        <img src="${item.image}" alt="${item.title}" class="product-img" onerror="this.onerror=null; this.src='Logo-Baru-Bonekaku-600x163_eA0g.png';">
+        <span class="card-category-badge"><i class="fas fa-tag"></i> ${item.categoryLabel}</span>
+      </div>
 
-    return `
-    <div class="product-card reveal-up" data-category="${item.category}" id="card-${item.id}" onclick="toggleFlipCard(${item.id}, event)">
-      <div class="product-card-inner">
+      <div class="card-content-box">
+        <h3 class="product-title-ss" onclick="openProductModal(${item.id})">${item.title}</h3>
         
         <!-- FRONT SIDE (IMAGE & BADGES) -->
         <div class="product-card-front">
