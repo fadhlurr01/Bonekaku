@@ -7150,8 +7150,13 @@ textarea.form-control-custom {
    IN-APP YOUTUBE VIDEO LIGHTBOX MODAL STYLES
    ========================================== */
 .modal-container-video {
-  max-width: 880px !important;
-  width: 92% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  grid-template-columns: none !important;
+  max-width: 860px !important;
+  width: 94vw !important;
+  max-height: 92vh !important;
+  overflow-y: auto !important;
   padding: 1.5rem !important;
   background: #1c130b !important;
   border: 1px solid rgba(217, 119, 6, 0.35) !important;
@@ -7337,5 +7342,15 @@ textarea.form-control-custom {
 
   .wa-order-chip {
     display: none;
+  }
+
+  .modal-container-video {
+    padding: 1.15rem 1rem !important;
+    border-radius: 18px !important;
+    width: 95vw !important;
+  }
+
+  .video-modal-header h3 {
+    font-size: 0.95rem !important;
   }
 }
