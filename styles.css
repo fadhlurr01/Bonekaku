@@ -5853,11 +5853,11 @@ textarea.form-control-custom {
 
 /* Right Card Box featuring Iconic Logo & 3D Stage Mascot */
 .ss1509-brand-card-box {
-  background: linear-gradient(145deg, #ffffff 0%, #fefcf8 100%);
-  border: 1px solid rgba(139, 90, 43, 0.2);
+  background: linear-gradient(140deg, #4A2810 0%, #381E0B 50%, #2A1607 100%);
+  border: 1px solid rgba(217, 119, 6, 0.35);
   border-radius: 28px;
   padding: 2.25rem 1.85rem;
-  box-shadow: 0 20px 50px rgba(60, 35, 15, 0.1);
+  box-shadow: 0 20px 50px rgba(42, 22, 7, 0.35);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -5866,10 +5866,12 @@ textarea.form-control-custom {
 }
 
 .ss1509-logo-badge {
-  background: var(--bg-tertiary);
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   padding: 0.85rem 1.75rem;
   border-radius: var(--radius-full);
-  border: 1px solid rgba(139, 90, 43, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   margin-bottom: 1rem;
 }
 
@@ -5877,6 +5879,7 @@ textarea.form-control-custom {
   height: 38px;
   width: auto;
   object-fit: contain;
+  filter: drop-shadow(0 0 14px rgba(255, 255, 255, 0.85)) brightness(1.15);
 }
 
 .ss1509-bottom-callout-box {
