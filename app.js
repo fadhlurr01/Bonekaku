@@ -685,7 +685,8 @@ function initMobileMenu() {
 
 // --------------------------------------------------------------------------
 // 6. PRODUCT CATALOG & 3D TILT EFFECT
-// -----------------------------------------------------------let currentCatalogPage = 1;
+// --------------------------------------------------------------------------
+let currentCatalogPage = 1;
 let currentActiveCatalogItems = [];
 const CATALOG_PAGE_SIZE = 20;
 
