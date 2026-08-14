@@ -5507,22 +5507,61 @@ textarea.form-control-custom {
   border-top: 1px solid rgba(139, 90, 43, 0.12);
 }
 
+.ss1527-customers-marquee-wrapper {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  display: flex;
+  padding: 1rem 0;
+}
+
+.ss1527-customers-marquee-wrapper::before,
+.ss1527-customers-marquee-wrapper::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 100px;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+.ss1527-customers-marquee-wrapper::before {
+  left: 0;
+  background: linear-gradient(to right, #fdf8f3, transparent);
+}
+.ss1527-customers-marquee-wrapper::after {
+  right: 0;
+  background: linear-gradient(to left, #fdf8f3, transparent);
+}
+
 .ss1527-customers-row {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.75rem;
+  display: flex;
+  width: max-content;
+  gap: 2rem;
+  animation: scroll-marquee 25s linear infinite;
+}
+
+.ss1527-customers-row:hover {
+  animation-play-state: paused;
+}
+
+@keyframes scroll-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(-50% - 1rem)); }
 }
 
 .ss1527-customer-item {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1.85rem 1.5rem;
+  padding: 2.2rem 2.5rem;
+  width: 280px;
   background: #ffffff;
   border-radius: var(--radius-md);
   border: 1px solid rgba(139, 90, 43, 0.14);
   box-shadow: 0 8px 24px rgba(60, 35, 15, 0.05);
   transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  flex-shrink: 0;
 }
 
 .ss1527-customer-item:hover {
@@ -5532,7 +5571,7 @@ textarea.form-control-custom {
 }
 
 .ss1527-customer-item img {
-  max-height: 52px;
+  max-height: 75px;
   width: auto;
   object-fit: contain;
   filter: grayscale(100%);
@@ -7227,9 +7266,9 @@ textarea.form-control-custom {
     width: 44px !important;
     height: 44px !important;
     border-radius: 14px !important;
-    background: rgba(139, 90, 43, 0.08) !important;
-    border: 1px solid rgba(139, 90, 43, 0.18) !important;
-    color: #3b2113 !important;
+    background: linear-gradient(135deg, #d97706 0%, #b45309 100%) !important;
+    border: none !important;
+    color: #ffffff !important;
     font-size: 1.25rem !important;
     cursor: pointer !important;
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;

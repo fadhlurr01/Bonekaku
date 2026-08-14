@@ -530,16 +530,16 @@ function renderPublicArticles(page = 1) {
   const pageArticles = publishedArticles.slice(startIdx, startIdx + PUBLIC_ARTICLE_PAGE_SIZE);
 
   grid.innerHTML = pageArticles.map((a, idx) => `
-    <div class="article-card reveal-up delay-${(idx % 3) + 1}" onclick="window.location.href='artikel-detail.html?id=${a.id}'">
+    <div class="article-card reveal-up delay-${(idx % 3) + 1}" onclick="openArticleDetailModal(${a.id})">
       <div class="article-img-wrapper">
         <img src="${a.image}" alt="${a.title}" class="article-img" onerror="this.onerror=null; this.src='Logo-Baru-Bonekaku-600x163_eA0g.png';">
         <span class="article-category">${a.category}</span>
       </div>
       <div class="article-body">
         <span class="article-date"><i class="far fa-calendar-alt"></i> ${a.date} &bull; oleh ${a.author || 'Admin'}</span>
-        <h3 onclick="window.location.href='artikel-detail.html?id=${a.id}'; event.stopPropagation();">${a.title}</h3>
+        <h3 onclick="openArticleDetailModal(${a.id}); event.stopPropagation();">${a.title}</h3>
         <p>${a.summary}</p>
-        <a href="artikel-detail.html?id=${a.id}" onclick="event.stopPropagation();" class="article-read-more">
+        <a href="#" onclick="openArticleDetailModal(${a.id}); event.stopPropagation(); return false;" class="article-read-more">
           Read More <i class="fas fa-arrow-right"></i>
         </a>
       </div>
@@ -672,9 +672,6 @@ function initMobileMenu() {
   const navMenu = document.querySelector('.nav-menu');
 
   if (!mobileBtn || !navMenu) return;
-
-  mobileBtn.removeEventListener('click', window.toggleMobileMenu);
-  mobileBtn.addEventListener('click', window.toggleMobileMenu);
 
   const navLinks = navMenu.querySelectorAll('.nav-link');
   navLinks.forEach(link => {
@@ -850,6 +847,7 @@ function renderProducts(items, page = 1) {
       const sizeVal = (item.size && item.size !== 'undefined') ? item.size : '12 cm';
       const moqVal = (item.moq && item.moq !== 'undefined') ? item.moq : 'Min 50 Pcs';
       const priceVal = (item.priceRange && item.priceRange !== 'undefined') ? item.priceRange : 'Rp 35.000 – 65.000';
+      const specsList = item.specs && Array.isArray(item.specs) ? item.specs : ["Bahan Super Soft Yelvo", "Isian Dakron Silicon Grade A", "100% Sertifikasi SNI"];
 
       return `
     <div class="bento-card product-card-ss reveal-up" data-category="${item.category}">
@@ -1755,4 +1753,5 @@ function initTestimonialCarousel() {
 
   showSlide(0);
   startTimer();
+}
 }
