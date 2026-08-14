@@ -231,16 +231,13 @@
             </div>
 
             <div class="sort-by-box">
-              <!-- 3-Way View Layout Switcher (Ref SS_1570 Redesign) -->
+              <!-- Minimalist 2-Way View Layout Switcher (Grid & List Row) -->
               <div class="view-mode-switcher" id="viewModeSwitcher">
-                <button type="button" class="view-btn active" data-view="grid" title="Tampilan Grid 3 Kolom" onclick="switchCatalogViewMode('grid')">
-                  <i class="fas fa-th-large"></i> <span class="view-btn-text">Grid</span>
+                <button type="button" class="view-btn active" data-view="grid" title="Tampilan Grid" onclick="switchCatalogViewMode('grid')">
+                  <i class="fas fa-th-large"></i>
                 </button>
-                <button type="button" class="view-btn" data-view="list" title="Tampilan List Baris Detail" onclick="switchCatalogViewMode('list')">
-                  <i class="fas fa-list"></i> <span class="view-btn-text">List Row</span>
-                </button>
-                <button type="button" class="view-btn" data-view="compact" title="Tampilan Kompak" onclick="switchCatalogViewMode('compact')">
-                  <i class="fas fa-table-cells"></i> <span class="view-btn-text">Kompak</span>
+                <button type="button" class="view-btn" data-view="list" title="Tampilan List Row" onclick="switchCatalogViewMode('list')">
+                  <i class="fas fa-list"></i>
                 </button>
               </div>
 
@@ -254,16 +251,15 @@
                 <option value="moq-low">MOQ Terendah</option>
               </select>
 
-              <!-- Modern Custom Glassmorphism Dropdown UI (Ref SS_1503 Redesign) -->
+              <!-- Modern Custom Glassmorphism Dropdown UI without star icon -->
               <div class="custom-dropdown" id="customSortDropdown">
                 <button type="button" class="dropdown-trigger" id="dropdownTriggerBtn" aria-haspopup="listbox" aria-expanded="false">
-                  <span class="trigger-label" id="triggerLabel"><i class="fas fa-star" style="color:var(--accent-gold);"></i> Rekomendasi Utama</span>
+                  <span class="trigger-label" id="triggerLabel">Rekomendasi Utama</span>
                   <i class="fas fa-chevron-down trigger-chevron"></i>
                 </button>
 
                 <div class="dropdown-menu-popup" id="dropdownMenuPopup" role="listbox">
                   <div class="dropdown-option-item active" data-value="default" role="option">
-                    <i class="fas fa-star option-icon" style="color:var(--accent-gold);"></i>
                     <span class="option-text">Rekomendasi Utama</span>
                     <i class="fas fa-check check-icon"></i>
                   </div>

@@ -883,25 +883,22 @@ function renderProducts(items, page = 1) {
             </div>
 
             <div class="product-card-actions">
-              <button class="btn btn-secondary btn-sm flip-trigger-btn" onclick="toggleFlipCard(${item.id}, event)" title="Putar Kartu & Lihat Deskripsi">
+              <button class="pill-btn btn-flip-pill" onclick="toggleFlipCard(${item.id}, event)" title="Putar Kartu">
                 <i class="fas fa-rotate"></i> Dibalik
               </button>
-              <a href="https://wa.me/6281385508611?text=Halo%20Admin%20Bonekaku,%20saya%20tertarik%20dengan%20produk%20${encodeURIComponent(item.title)}" 
-                 target="_blank" 
-                 class="btn btn-primary btn-sm btn-card-wa" 
-                 onclick="event.stopPropagation();">
-                <i class="fab fa-whatsapp"></i> WA
-              </a>
+              <button class="pill-btn btn-detail-pill" onclick="openProductModal(${item.id}); event.stopPropagation();" title="Lihat Detail Pop-up">
+                <i class="fas fa-expand"></i> Detail
+              </button>
             </div>
           </div>
         </div>
 
-        <!-- BACK SIDE (FLIPPED DETAILS & FULL DESCRIPTION) -->
+        <!-- BACK SIDE (FLIPPED ELEGANT DARK DETAILS) -->
         <div class="product-card-back">
           <div class="card-back-header">
             <span class="card-category-badge"><i class="fas fa-cube"></i> ${item.categoryLabel}</span>
-            <button class="flip-back-btn" onclick="toggleFlipCard(${item.id}, event)" title="Kembali ke Foto">
-              <i class="fas fa-rotate-left"></i> Foto
+            <button class="flip-back-btn" onclick="toggleFlipCard(${item.id}, event)" title="Kembali ke Depan">
+              <i class="fas fa-rotate-left"></i> Dibalik
             </button>
           </div>
 
@@ -919,24 +916,23 @@ function renderProducts(items, page = 1) {
             </div>
 
             <div class="card-back-specs">
-              <h4><i class="fas fa-shield-alt" style="color:var(--accent-brand);"></i> Spesifikasi:</h4>
+              <h4><i class="fas fa-shield-alt" style="color:var(--accent-gold);"></i> Keunggulan Produk:</h4>
               <ul>
-                ${specsList.map(spec => `<li><i class="fas fa-check-circle"></i> ${spec}</li>`).join('')}
+                ${specsList.map(spec => `<li><i class="fas fa-check-circle" style="color:#10b981;"></i> ${spec}</li>`).join('')}
               </ul>
             </div>
           </div>
 
           <div class="card-back-footer">
+            <button class="pill-btn btn-flip-pill" onclick="toggleFlipCard(${item.id}, event)" title="Putar ke Depan">
+              <i class="fas fa-rotate"></i> Dibalik
+            </button>
             <a href="https://wa.me/6281385508611?text=Halo%20Admin%20Bonekaku,%20saya%20tertarik%20dengan%20produk%20${encodeURIComponent(item.title)}" 
                target="_blank" 
-               class="btn btn-primary btn-sm btn-card-wa" 
+               class="pill-btn btn-wa-emerald" 
                onclick="event.stopPropagation();">
-              <i class="fab fa-whatsapp"></i> Order WA
+              <i class="fab fa-whatsapp"></i> WA
             </a>
-            <button class="btn btn-secondary btn-sm btn-card-details" 
-                    onclick="openProductModal(${item.id}); event.stopPropagation();">
-              <i class="fas fa-expand"></i> Lightbox
-            </button>
           </div>
         </div>
       </div>

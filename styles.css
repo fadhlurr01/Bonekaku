@@ -8025,60 +8025,129 @@ textarea.form-control-custom {
 
 .product-card-actions {
   margin-top: auto !important;
-  padding-top: 0.4rem !important;
+  padding-top: 0.5rem !important;
   display: flex !important;
-  gap: 0.5rem !important;
+  gap: 0.6rem !important;
+  align-items: center !important;
 }
 
-.flip-trigger-btn {
+/* PILL BUTTON STYLING (REF SS_1634 DESIGN) */
+.pill-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.45rem !important;
+  padding: 0.5rem 1rem !important;
+  border-radius: var(--radius-full) !important;
+  font-family: var(--font-heading) !important;
+  font-size: 0.85rem !important;
   font-weight: 800 !important;
-  color: #b45309 !important;
-  background: rgba(217, 119, 6, 0.12) !important;
-  border: 1px solid rgba(217, 119, 6, 0.25) !important;
+  cursor: pointer !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  text-decoration: none !important;
+  border: none !important;
+  flex: 1 !important;
+  box-sizing: border-box !important;
 }
 
-.flip-trigger-btn:hover {
+.btn-flip-pill {
+  background: #fff5eb !important;
+  color: #b45309 !important;
+  border: 1px solid rgba(217, 119, 6, 0.3) !important;
+  box-shadow: 0 4px 12px rgba(217, 119, 6, 0.08) !important;
+}
+
+.btn-flip-pill:hover {
+  background: #fde68a !important;
+  color: #92400e !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 16px rgba(217, 119, 6, 0.2) !important;
+}
+
+.btn-detail-pill {
+  background: rgba(139, 90, 43, 0.1) !important;
+  color: var(--accent-brand) !important;
+  border: 1px solid rgba(139, 90, 43, 0.2) !important;
+}
+
+.btn-detail-pill:hover {
   background: var(--accent-brand) !important;
+  color: #ffffff !important;
+  transform: translateY(-2px) !important;
+}
+
+.btn-wa-emerald {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.35) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.btn-wa-emerald:hover {
+  background: linear-gradient(135deg, #34d399 0%, #10b981 100%) !important;
+  box-shadow: 0 8px 22px rgba(16, 185, 129, 0.5) !important;
+  transform: translateY(-2px) !important;
   color: #ffffff !important;
 }
 
-/* BACK CARD */
+/* BACK CARD - ULTRA ELEGANT DARK EXECUTIVE FLIP SIDE */
 .product-card-back {
-  background: #fffcf8 !important;
+  background: linear-gradient(145deg, #180e08 0%, #291a0e 100%) !important;
+  border: 1.5px solid rgba(217, 119, 6, 0.35) !important;
+  box-shadow: inset 0 0 35px rgba(0, 0, 0, 0.5) !important;
   transform: rotateY(180deg) !important;
   display: flex !important;
   flex-direction: column !important;
-  padding: 1.15rem !important;
+  padding: 1.25rem !important;
   gap: 0.75rem !important;
+  border-radius: 20px !important;
+  color: #ffffff !important;
 }
 
 .card-back-header {
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+  padding-bottom: 0.6rem !important;
+}
+
+.card-category-badge {
+  background: rgba(217, 119, 6, 0.25) !important;
+  color: #fbbf24 !important;
+  border: 1px solid rgba(217, 119, 6, 0.45) !important;
+  font-size: 0.725rem !important;
+  font-weight: 800 !important;
+  padding: 0.25rem 0.65rem !important;
+  border-radius: 20px !important;
 }
 
 .flip-back-btn {
-  background: rgba(139, 90, 43, 0.1) !important;
-  color: #3b2113 !important;
-  border: none !important;
-  padding: 0.3rem 0.75rem !important;
-  border-radius: 12px !important;
+  background: rgba(255, 255, 255, 0.12) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  padding: 0.35rem 0.85rem !important;
+  border-radius: 20px !important;
   font-weight: 800 !important;
   font-size: 0.8rem !important;
   cursor: pointer !important;
-  transition: all 0.2s ease !important;
+  transition: all 0.25s ease !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.4rem !important;
 }
 
 .flip-back-btn:hover {
-  background: var(--accent-brand) !important;
-  color: #ffffff !important;
+  background: var(--accent-gold) !important;
+  color: #120904 !important;
+  border-color: var(--accent-gold) !important;
+  transform: translateY(-2px) !important;
 }
 
 .card-back-body {
   display: flex !important;
   flex-direction: column !important;
-  gap: 0.6rem !important;
+  gap: 0.65rem !important;
   flex-grow: 1 !important;
   overflow-y: auto !important;
   padding-right: 0.25rem !important;
@@ -8086,37 +8155,54 @@ textarea.form-control-custom {
 
 .card-back-title {
   font-family: var(--font-heading) !important;
-  font-size: 1rem !important;
+  font-size: 1.1rem !important;
   font-weight: 800 !important;
-  color: #2a180e !important;
+  color: #ffffff !important;
   margin: 0 !important;
+  line-height: 1.25 !important;
 }
 
 .card-back-meta {
   display: flex !important;
   flex-wrap: wrap !important;
-  gap: 0.35rem !important;
+  gap: 0.4rem !important;
+}
+
+.card-back-meta .meta-pill {
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: #fef08a !important;
+  border: 1px solid rgba(254, 240, 138, 0.3) !important;
+  font-size: 0.775rem !important;
+  font-weight: 800 !important;
+  padding: 0.3rem 0.65rem !important;
+  border-radius: 8px !important;
+}
+
+.card-back-meta .meta-pill.price {
+  background: linear-gradient(135deg, rgba(217, 119, 6, 0.3) 0%, rgba(180, 83, 9, 0.25) 100%) !important;
+  color: #fbbf24 !important;
+  border-color: rgba(251, 191, 36, 0.45) !important;
 }
 
 .card-back-desc-box {
-  background: rgba(255, 255, 255, 0.7) !important;
+  background: rgba(0, 0, 0, 0.35) !important;
   padding: 0.65rem 0.85rem !important;
-  border-radius: 10px !important;
-  border: 1px dashed rgba(139, 90, 43, 0.2) !important;
+  border-radius: 12px !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
 
 .card-back-desc {
-  font-size: 0.82rem !important;
-  color: #475569 !important;
+  font-size: 0.825rem !important;
+  color: rgba(255, 255, 255, 0.88) !important;
   line-height: 1.45 !important;
   margin: 0 !important;
 }
 
 .card-back-specs h4 {
-  font-size: 0.82rem !important;
+  font-size: 0.825rem !important;
   font-weight: 800 !important;
+  color: var(--accent-gold) !important;
   margin: 0 0 0.35rem 0 !important;
-  color: #1e293b !important;
 }
 
 .card-back-specs ul {
@@ -8129,33 +8215,30 @@ textarea.form-control-custom {
 }
 
 .card-back-specs li {
-  font-size: 0.78rem !important;
-  color: #64748b !important;
+  font-size: 0.8rem !important;
+  color: rgba(255, 255, 255, 0.92) !important;
   display: flex !important;
   align-items: center !important;
-  gap: 0.4rem !important;
-}
-
-.card-back-specs li i {
-  color: #10b981 !important;
-  font-size: 0.75rem !important;
+  gap: 0.45rem !important;
 }
 
 .card-back-footer {
   display: flex !important;
-  gap: 0.5rem !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 0.65rem !important;
   margin-top: auto !important;
-  padding-top: 0.5rem !important;
-  border-top: 1px solid rgba(139, 90, 43, 0.12) !important;
+  padding-top: 0.65rem !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.12) !important;
 }
 
 /* MOBILE MEDIA QUERY FIT */
 @media (max-width: 768px) {
   .product-card {
-    height: 410px !important;
+    height: 420px !important;
   }
   .product-img-box {
-    height: 200px !important;
+    height: 190px !important;
   }
   .product-info-box {
     padding: 0.95rem !important;
