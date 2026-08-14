@@ -46,17 +46,17 @@
         </a>
 
         <ul class="nav-menu">
-          <li><a href="index.html" class="nav-link">Home</a></li>
-          <li><a href="katalog.html" class="nav-link">Katalog</a></li>
-          <li><a href="layanan.html" class="nav-link">Layanan</a></li>
-          <li><a href="tentang-kami.html" class="nav-link">Tentang Kami</a></li>
-          <li><a href="kontak.html" class="nav-link active">Kontak Kami</a></li>
-          <li><a href="artikel.html" class="nav-link">Artikel</a></li>
-          <li><a href="login.html" class="nav-link admin-link" style="color:var(--accent-gold); font-weight:800;"><i class="fas fa-user-gear"></i> Admin</a></li>
+          <li><a href="index.html" class="nav-link" onclick="navigateMobileMenu('index.html', event)">Home</a></li>
+          <li><a href="katalog.html" class="nav-link" onclick="navigateMobileMenu('katalog.html', event)">Katalog</a></li>
+          <li><a href="layanan.html" class="nav-link" onclick="navigateMobileMenu('layanan.html', event)">Layanan</a></li>
+          <li><a href="tentang-kami.html" class="nav-link" onclick="navigateMobileMenu('tentang-kami.html', event)">Tentang Kami</a></li>
+          <li><a href="kontak.html" class="nav-link active" onclick="navigateMobileMenu('kontak.html', event)">Kontak Kami</a></li>
+          <li><a href="artikel.html" class="nav-link" onclick="navigateMobileMenu('artikel.html', event)">Artikel</a></li>
+          <li><a href="login.html" class="nav-link admin-link" onclick="navigateMobileMenu('login.html', event)" style="color:var(--accent-gold); font-weight:800;"><i class="fas fa-user-gear"></i> Admin</a></li>
         </ul>
 
         <div class="nav-actions">
-          <button class="mobile-menu-toggle" id="mobileMenuBtn">
+          <button class="mobile-menu-toggle" id="mobileMenuBtn" onclick="toggleMobileMenu(event)" aria-label="Toggle Mobile Menu">
             <i class="fas fa-bars"></i>
           </button>
         </div>

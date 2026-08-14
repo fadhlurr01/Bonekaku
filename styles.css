@@ -7432,6 +7432,47 @@ textarea.form-control-custom {
     font-size: 0.92rem !important;
     line-height: 1.5 !important;
   }
+
+  /* Mobile Footer Alignment Fix */
+  .footer-columns-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.85rem !important;
+  }
+
+  .footer-col {
+    width: 100% !important;
+  }
+
+  .footer-contact-list li {
+    word-break: break-word !important;
+    overflow-wrap: anywhere !important;
+    white-space: normal !important;
+    align-items: flex-start !important;
+  }
+
+  .footer-contact-list li span,
+  .footer-contact-list li a {
+    word-break: break-word !important;
+    overflow-wrap: anywhere !important;
+    display: inline-block !important;
+    max-width: 100% !important;
+  }
+
+  .footer-brand-desc {
+    font-size: 0.92rem !important;
+    line-height: 1.6 !important;
+    max-width: 100% !important;
+  }
+
+  .footer-bottom {
+    flex-direction: column !important;
+    text-align: center !important;
+    gap: 1rem !important;
+  }
+
+  .footer-social-links {
+    justify-content: center !important;
+  }
 }
 
 @media (max-width: 576px) {
