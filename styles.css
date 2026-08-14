@@ -7175,8 +7175,10 @@ textarea.form-control-custom {
     padding-left: 1.25rem;
     padding-right: 1.25rem;
   }
+}
 
-  /* Header & Mobile Drawer Menu */
+/* Mobile Drawer Menu trigger ONLY for smartphones/mobile devices (<= 768px) */
+@media (max-width: 768px) {
   .header {
     padding: 0.65rem 0;
   }
@@ -7249,6 +7251,7 @@ textarea.form-control-custom {
     transform: scale(0.95);
     box-shadow: 0 6px 16px rgba(217, 119, 6, 0.3);
   }
+}
 
   /* Hero Section Mobile */
   .ss1498-intro-grid {
