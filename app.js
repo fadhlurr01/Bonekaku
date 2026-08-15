@@ -90,7 +90,7 @@ function generateCompleteCatalog() {
       image: "Boneka-Bear-Jeslyn-12-outfit-1536x1149_eA0g.jpg",
       moq: "Min 50 Pcs",
       priceRange: "Rp 35.000 – 65.000",
-      desc: "Boneka Souvenir Bear Jeslyn ukuran 12cm dengan busana custom logo perusahaan. Terbuat dari bahan Yelvo Super Soft dan isian Dakron Silicon Grade A.",
+      desc: "Boneka Souvenir Bear Jeslyn 12cm dengan busana custom logo. Bahan Yelvo Super Soft & isian Dakron Silicon Grade A.",
       specs: ["Bahan Super Soft Yelvo", "Isian Dakron Silicon Grade A", "100% Sertifikasi SNI", "Custom Logo Embroidery"]
     },
     {
@@ -102,7 +102,7 @@ function generateCompleteCatalog() {
       image: "Boneka-Bear-Vico-3outfit-1536x1149_eA0g.jpg",
       moq: "Min 50 Pcs",
       priceRange: "Rp 42.000 – 75.000",
-      desc: "Boneka Souvenir Bear Vico ukuran 15cm favorit corporate gift set. Baju kaos dapat dicetak logo brand presisi tinggi.",
+      desc: "Boneka Souvenir Bear Vico 15cm favorit corporate gift. Kaos custom print logo brand presisi tinggi.",
       specs: ["Bahan Super Soft Yelvo", "Isian Dakron Silicon Grade A", "100% Sertifikasi SNI", "Pilihan 3 Model Outfit"]
     },
     {
@@ -114,7 +114,7 @@ function generateCompleteCatalog() {
       image: "Boneka-Bear-Mayna-3outfit-1536x1152_eA0g.jpg",
       moq: "Min 50 Pcs",
       priceRange: "Rp 45.000 – 80.000",
-      desc: "Boneka Bear Mayna 15cm edisi khusus merchandise acara perusahaan. Jahitan presisi rapi dengan bulu lembut halus.",
+      desc: "Boneka Bear Mayna 15cm edisi merchandise acara perusahaan. Jahitan rapi presisi dengan bulu halus.",
       specs: ["Bahan Super Soft Yelvo", "Isian Dakron Silicon Grade A", "100% Sertifikasi SNI", "Custom Color Shirt"]
     },
     {
@@ -126,7 +126,7 @@ function generateCompleteCatalog() {
       image: "Boneka-Bear-Bobby-18-outfit2-1536x1152_eA0g.jpg",
       moq: "Min 50 Pcs",
       priceRange: "Rp 50.000 – 85.000",
-      desc: "Boneka Bear Bobby 18cm top seller untuk souvenir promosi kantor, event corporate, dan merchandise pameran.",
+      desc: "Boneka Bear Bobby 18cm top seller untuk souvenir promosi kantor, event corporate, & pameran.",
       specs: ["Bahan Super Soft Yelvo", "Isian Dakron Silicon Grade A", "100% Sertifikasi SNI", "Free Sample 3D Design"]
     },
     {
@@ -138,7 +138,7 @@ function generateCompleteCatalog() {
       image: "Boneka-Bear-Boy-Girl-outfit-1536x1152_eA0g.jpg",
       moq: "Min 50 Pcs",
       priceRange: "Rp 55.000 – 90.000",
-      desc: "Boneka sepasang Bear Boy & Girl 20cm standing position. Sangat diminati untuk hadiah wisuda, event pernikahan, dan souvenir eksklusif.",
+      desc: "Boneka sepasang Bear Boy & Girl 20cm. Favorit hadiah wisuda, event pernikahan, & souvenir eksklusif.",
       specs: ["Bahan Super Soft Yelvo", "Isian Dakron Silicon Grade A", "100% Sertifikasi SNI", "Standing Position Frame"]
     },
     {
@@ -150,7 +150,7 @@ function generateCompleteCatalog() {
       image: "Boneka-Bear-Kempinski-22-3outfit-1536x1152_eA0g.jpg",
       moq: "Min 50 Pcs",
       priceRange: "Rp 65.000 – 95.000",
-      desc: "Boneka Plush Bear Kempinski 22cm ukuran besar eksklusif hotel & corporate gift. Bahan berkualitas tinggi super empuk.",
+      desc: "Boneka Bear Kempinski 22cm eksklusif hotel & corporate gift set. Bahan super empuk SNI.",
       specs: ["Bahan Super Soft Yelvo", "Isian Dakron Silicon Grade A", "100% Sertifikasi SNI", "Eksklusif Outfit Custom"]
     }
   ];
@@ -912,7 +912,7 @@ function renderProducts(items, page = 1) {
             </div>
 
             <div class="card-back-desc-box">
-              <p class="card-back-desc">${(item.desc && item.desc.length > 80) ? item.desc.substring(0, 80) + '...' : (item.desc || 'Boneka Souvenir custom berkualitas tinggi berstandar SNI.')}</p>
+              <p class="card-back-desc">${item.desc || 'Boneka Souvenir custom berkualitas tinggi berstandar SNI.'}</p>
             </div>
 
             <div class="card-back-specs">
