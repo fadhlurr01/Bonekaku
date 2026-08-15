@@ -1,22 +1,14 @@
 {
-  "version": 2,
   "cleanUrls": true,
-  "routes": [
+  "headers": [
     {
-      "src": "/(.*)\\.css",
-      "headers": { "content-type": "text/css; charset=utf-8" }
-    },
-    {
-      "src": "/(.*)\\.js",
-      "headers": { "content-type": "application/javascript; charset=utf-8" }
-    },
-    {
-      "src": "/(.*)\\.html",
-      "headers": { "content-type": "text/html; charset=utf-8" }
-    },
-    {
-      "src": "/",
-      "dest": "/index.html"
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        }
+      ]
     }
   ]
 }
