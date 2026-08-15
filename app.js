@@ -911,12 +911,7 @@ function renderProducts(items, page = 1) {
               <span class="meta-pill price"><i class="fas fa-tag"></i> ${priceVal}</span>
             </div>
 
-            <div class="card-back-desc-box">
-              <p class="card-back-desc">${item.desc || 'Boneka Souvenir custom berkualitas tinggi berstandar SNI.'}</p>
-            </div>
-
             <div class="card-back-specs">
-              <h4><i class="fas fa-shield-alt" style="color:var(--accent-gold);"></i> Keunggulan Utama:</h4>
               <ul>
                 ${specsList.slice(0, 2).map(spec => `<li><i class="fas fa-check-circle" style="color:#10b981;"></i> ${spec}</li>`).join('')}
               </ul>
