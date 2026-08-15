@@ -631,29 +631,31 @@ function initThemeToggle() {
 
 function initHeaderScroll() {
   const header = document.getElementById('mainHeader');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 40) {
-      header.classList.add('scrolled');
-    } else {
-      header.classList.remove('scrolled');
-    }
-  });
+  const bar = document.getElementById('scrollProgress');
 
-  initScrollProgressBar();
+  let scrollTicking = false;
+
+  window.addEventListener('scroll', () => {
+    if (!scrollTicking) {
+      window.requestAnimationFrame(() => {
+        const sy = window.scrollY;
+        if (header) {
+          if (sy > 40) header.classList.add('scrolled');
+          else header.classList.remove('scrolled');
+        }
+        if (bar) {
+          const docH = document.documentElement.scrollHeight - window.innerHeight;
+          const progress = docH > 0 ? Math.min((sy / docH) * 100, 100) : 0;
+          bar.style.width = progress + '%';
+        }
+        scrollTicking = false;
+      });
+      scrollTicking = true;
+    }
+  }, { passive: true });
+
   initActiveNavPage();
   initMobileMenu();
-}
-
-function initScrollProgressBar() {
-  const bar = document.getElementById('scrollProgress');
-  if (!bar) return;
-
-  window.addEventListener('scroll', () => {
-    const scrollTop = window.scrollY;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const progress = Math.min((scrollTop / docHeight) * 100, 100);
-    bar.style.width = progress + '%';
-  });
 }
 
 function initActiveNavPage() {
@@ -1645,31 +1647,35 @@ function initFaqAccordion() {
 
 function initStatsCounter() {
   const stats = document.querySelectorAll('.stat-number');
+  const section = document.querySelector('.hero-stats');
+  if (!section || !stats.length) return;
+
   let animated = false;
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !animated) {
+        animated = true;
+        stats.forEach(stat => {
+          const target = parseInt(stat.getAttribute('data-target'));
+          if (isNaN(target)) return;
+          let count = 0;
+          const increment = Math.ceil(target / 45);
+          const timer = setInterval(() => {
+            count += increment;
+            if (count >= target) {
+              stat.innerText = target.toLocaleString('id-ID') + "+";
+              clearInterval(timer);
+            } else {
+              stat.innerText = count.toLocaleString('id-ID') + "+";
+            }
+          }, 25);
+        });
+        observer.unobserve(section);
+      }
+    });
+  }, { threshold: 0.15 });
 
-  window.addEventListener('scroll', () => {
-    const section = document.querySelector('.hero-stats');
-    if (!section || animated) return;
-
-    const rect = section.getBoundingClientRect();
-    if (rect.top <= window.innerHeight) {
-      animated = true;
-      stats.forEach(stat => {
-        const target = parseInt(stat.getAttribute('data-target'));
-        let count = 0;
-        const increment = Math.ceil(target / 45);
-        const timer = setInterval(() => {
-          count += increment;
-          if (count >= target) {
-            stat.innerText = target.toLocaleString('id-ID') + "+";
-            clearInterval(timer);
-          } else {
-            stat.innerText = count.toLocaleString('id-ID') + "+";
-          }
-        }, 25);
-      });
-    }
-  });
+  observer.observe(section);
 }
 
 // --------------------------------------------------------------------------

@@ -8842,3 +8842,30 @@ body, html {
 *::-webkit-scrollbar-corner {
   background: #23140a !important;
 }
+
+/* --------------------------------------------------------------------------
+   HIGH-PERFORMANCE HARDWARE SCROLL & GPU LAYER ACCELERATION (ZERO-LAG 60FPS)
+   -------------------------------------------------------------------------- */
+#mainHeader,
+.site-header,
+.animated-toy-universe-bg,
+.toy-blob,
+.hero-section,
+.product-card,
+.article-card,
+.ss1511-service-card,
+.floating-whatsapp-btn,
+.admin-sidebar,
+.admin-header,
+.admin-stat-card,
+.admin-panel-card {
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+html, body {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
