@@ -897,8 +897,8 @@ function renderProducts(items, page = 1) {
         <div class="product-card-back">
           <div class="card-back-header">
             <span class="card-category-badge"><i class="fas fa-cube"></i> ${item.categoryLabel}</span>
-            <button class="flip-back-btn" onclick="toggleFlipCard(${item.id}, event)" title="Kembali ke Depan">
-              <i class="fas fa-rotate-left"></i> Dibalik
+            <button class="flip-back-icon-btn" onclick="toggleFlipCard(${item.id}, event)" title="Kembali ke Depan">
+              <i class="fas fa-rotate-left"></i>
             </button>
           </div>
 
@@ -912,7 +912,7 @@ function renderProducts(items, page = 1) {
             </div>
 
             <div class="card-back-desc-box">
-              <p class="card-back-desc">${item.desc || 'Boneka Souvenir custom berkualitas tinggi berstandar SNI.'}</p>
+              <p class="card-back-desc">${(item.desc && item.desc.length > 80) ? item.desc.substring(0, 80) + '...' : (item.desc || 'Boneka Souvenir custom berkualitas tinggi berstandar SNI.')}</p>
             </div>
 
             <div class="card-back-specs">
@@ -924,14 +924,11 @@ function renderProducts(items, page = 1) {
           </div>
 
           <div class="card-back-footer">
-            <button class="pill-btn btn-flip-pill" onclick="toggleFlipCard(${item.id}, event)" title="Putar ke Depan">
-              <i class="fas fa-rotate"></i> Dibalik
-            </button>
             <a href="https://wa.me/6281385508611?text=Halo%20Admin%20Bonekaku,%20saya%20tertarik%20dengan%20produk%20${encodeURIComponent(item.title)}" 
                target="_blank" 
-               class="pill-btn btn-wa-emerald" 
+               class="pill-btn btn-wa-full" 
                onclick="event.stopPropagation();">
-              <i class="fab fa-whatsapp"></i> WA
+              <i class="fab fa-whatsapp"></i> Tanya & Pesan via WA Direct
             </a>
           </div>
         </div>

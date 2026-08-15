@@ -8123,26 +8123,52 @@ textarea.form-control-custom {
   border-radius: 20px !important;
 }
 
-.flip-back-btn {
-  background: rgba(255, 255, 255, 0.12) !important;
+.flip-back-icon-btn {
+  width: 34px !important;
+  height: 34px !important;
+  border-radius: 50% !important;
+  background: rgba(255, 255, 255, 0.15) !important;
   color: #ffffff !important;
-  border: 1px solid rgba(255, 255, 255, 0.2) !important;
-  padding: 0.35rem 0.85rem !important;
-  border-radius: 20px !important;
-  font-weight: 800 !important;
-  font-size: 0.8rem !important;
-  cursor: pointer !important;
-  transition: all 0.25s ease !important;
-  display: inline-flex !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  display: flex !important;
   align-items: center !important;
-  gap: 0.4rem !important;
+  justify-content: center !important;
+  font-size: 0.85rem !important;
+  cursor: pointer !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  flex-shrink: 0 !important;
 }
 
-.flip-back-btn:hover {
+.flip-back-icon-btn:hover {
   background: var(--accent-gold) !important;
   color: #120904 !important;
   border-color: var(--accent-gold) !important;
+  transform: rotate(-180deg) scale(1.1) !important;
+}
+
+.btn-wa-full {
+  width: 100% !important;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.4) !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  font-size: 0.85rem !important;
+  padding: 0.65rem 1rem !important;
+  border-radius: var(--radius-full) !important;
+  font-weight: 800 !important;
+  text-decoration: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.5rem !important;
+  transition: all 0.3s ease !important;
+}
+
+.btn-wa-full:hover {
+  background: linear-gradient(135deg, #34d399 0%, #10b981 100%) !important;
+  box-shadow: 0 8px 25px rgba(16, 185, 129, 0.55) !important;
   transform: translateY(-2px) !important;
+  color: #ffffff !important;
 }
 
 .card-back-body {
