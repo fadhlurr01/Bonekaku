@@ -919,7 +919,7 @@ function renderProducts(items, page = 1) {
                target="_blank" 
                class="pill-btn btn-wa-full" 
                onclick="event.stopPropagation();">
-              <i class="fab fa-whatsapp"></i> Tanya & Pesan via WA Direct
+              <i class="fab fa-whatsapp"></i> Tanya & Pesan via WA
             </a>
           </div>
         </div>
