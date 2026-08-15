@@ -2132,7 +2132,7 @@ h1, h2, h3, h4, h5, h6 {
    14. SUBPAGE HEADER BANNER & BREADCRUMBS
    -------------------------------------------------------------------------- */
 .subpage-header-banner {
-  padding: 9.5rem 0 5rem 0 !important;
+  padding: 6.8rem 0 2.5rem 0 !important;
   background: linear-gradient(135deg, #fffcf7 0%, #fef3c7 40%, #fff7ed 70%, #fffcf8 100%) !important;
   border-bottom: 1px solid rgba(217, 119, 6, 0.15) !important;
   position: relative !important;
@@ -2150,11 +2150,11 @@ h1, h2, h3, h4, h5, h6 {
 .subpage-header-banner::before {
   content: '' !important;
   position: absolute !important;
-  top: -30% !important;
+  top: -40% !important;
   left: 50% !important;
   transform: translateX(-50%) !important;
-  width: 750px !important;
-  height: 750px !important;
+  width: 650px !important;
+  height: 650px !important;
   background: radial-gradient(circle, rgba(245, 158, 11, 0.18) 0%, rgba(249, 115, 22, 0.08) 45%, transparent 70%) !important;
   opacity: 0.9 !important;
   pointer-events: none !important;
@@ -2207,11 +2207,11 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center !important;
   gap: 0.65rem !important;
   font-family: var(--font-heading) !important;
-  font-size: 0.85rem !important;
+  font-size: 0.825rem !important;
   font-weight: 800 !important;
   color: #78350f !important;
-  margin-bottom: 1.25rem !important;
-  padding: 0.45rem 1.35rem !important;
+  margin-bottom: 0.75rem !important;
+  padding: 0.35rem 1.15rem !important;
   border-radius: var(--radius-full) !important;
   background: rgba(255, 255, 255, 0.85) !important;
   backdrop-filter: blur(14px) !important;
@@ -2232,10 +2232,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .subpage-title {
   font-family: 'Outfit', 'Sora', sans-serif !important;
-  font-size: clamp(2.3rem, 5vw, 3.6rem) !important;
+  font-size: clamp(1.85rem, 3.8vw, 2.75rem) !important;
   font-weight: 900 !important;
-  line-height: 1.15 !important;
-  margin-bottom: 1.25rem !important;
+  line-height: 1.18 !important;
+  margin-bottom: 0.65rem !important;
   background: linear-gradient(135deg, #1e0e06 0%, #b45309 35%, #d97706 70%, #78350f 100%) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
@@ -2245,12 +2245,12 @@ h1, h2, h3, h4, h5, h6 {
 
 .subpage-subtitle {
   font-family: var(--font-body) !important;
-  font-size: 1.125rem !important;
+  font-size: 1.025rem !important;
   font-weight: 500 !important;
   color: #475569 !important;
   max-width: 760px !important;
   margin: 0 auto !important;
-  line-height: 1.65 !important;
+  line-height: 1.55 !important;
 }
 
 /* --------------------------------------------------------------------------
@@ -8544,5 +8544,9 @@ textarea.form-control-custom {
   .subpage-header-banner::after {
     animation: none !important;
     display: none !important;
+  }
+
+  .subpage-header-banner {
+    padding: 5.5rem 0 1.8rem 0 !important;
   }
 }
