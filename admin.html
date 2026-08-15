@@ -92,6 +92,35 @@
       max-width: 100%;
     }
 
+    /* Admin Modal Backdrop Overlay (Fixed Fullscreen Centered Modal) */
+    .admin-modal-overlay {
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      bottom: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      height: 100dvh !important;
+      z-index: 999999 !important;
+      background: rgba(10, 5, 2, 0.72) !important;
+      backdrop-filter: blur(8px) !important;
+      -webkit-backdrop-filter: blur(8px) !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      padding: 1.5rem !important;
+      box-sizing: border-box !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+      transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+
+    .admin-modal-overlay.open {
+      opacity: 1 !important;
+      pointer-events: auto !important;
+    }
+
     /* Custom Modern Confirmation Modal */
     .confirm-modal-box {
       background: linear-gradient(145deg, #1d1209 0%, #2a1b0e 100%);
