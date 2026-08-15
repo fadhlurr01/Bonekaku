@@ -1741,3 +1741,21 @@ function initTestimonialCarousel() {
   showSlide(0);
   startTimer();
 }
+
+/* --------------------------------------------------------------------------
+   FUTURISTIC SMOOTH PAGE TRANSITION SYSTEM
+   -------------------------------------------------------------------------- */
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('a[href]:not([target="_blank"]):not([href^="#"]):not([href^="javascript"]):not([href^="tel"]):not([href^="mailto"])').forEach(link => {
+    link.addEventListener('click', (e) => {
+      const href = link.getAttribute('href');
+      if (href && href !== '#' && !href.startsWith('#')) {
+        e.preventDefault();
+        document.body.classList.add('page-transitioning');
+        setTimeout(() => {
+          window.location.href = href;
+        }, 200);
+      }
+    });
+  });
+});
