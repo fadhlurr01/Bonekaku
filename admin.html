@@ -368,40 +368,72 @@
       display: flex;
       align-items: center;
       gap: 1.15rem;
-      padding: 0.5rem 1rem;
-      background: rgba(255, 255, 255, 0.8);
-      border-radius: var(--radius-full);
-      border: 1px solid rgba(139, 90, 43, 0.15);
+      padding: 0.65rem 1.25rem;
+      background: #ffffff;
+      border-radius: 99px;
+      border: 1.5px solid rgba(217, 119, 6, 0.3);
+      box-shadow: 0 8px 24px rgba(60, 35, 15, 0.08);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .admin-user-profile:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(217, 119, 6, 0.2);
+      border-color: var(--accent-gold);
+    }
+
+    .admin-avatar-wrapper {
+      position: relative;
     }
 
     .admin-avatar {
-      width: 44px;
-      height: 44px;
+      width: 46px;
+      height: 46px;
       border-radius: 50%;
-      background: var(--gradient-brand);
+      background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
       color: #ffffff;
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 800;
       font-family: var(--font-heading);
-      font-size: 1rem;
-      box-shadow: 0 4px 14px rgba(139, 90, 43, 0.3);
+      font-size: 1.05rem;
+      box-shadow: 0 4px 14px rgba(217, 119, 6, 0.35);
+    }
+
+    .online-status-dot {
+      position: absolute;
+      bottom: 1px;
+      right: 1px;
+      width: 12px;
+      height: 12px;
+      background: #10b981;
+      border: 2.5px solid #ffffff;
+      border-radius: 50%;
+      box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
     }
 
     .admin-user-info h4 {
       font-family: var(--font-heading);
       font-size: 0.95rem;
       font-weight: 800;
-      color: var(--text-primary);
-      margin: 0;
+      color: #1e1b18;
+      margin: 0 0 0.2rem 0;
+      letter-spacing: -0.2px;
     }
 
-    .admin-user-info span {
-      font-size: 0.775rem;
-      color: var(--accent-gold);
+    .admin-role-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.725rem;
+      color: #b45309;
       font-weight: 800;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.3px;
+      background: rgba(217, 119, 6, 0.12);
+      padding: 0.15rem 0.6rem;
+      border-radius: 99px;
+      border: 1px solid rgba(217, 119, 6, 0.25);
     }
 
     /* Stats Overview Grid */
@@ -584,22 +616,104 @@
     }
 
     .badge-cat {
-      display: inline-block;
-      padding: 0.35rem 0.85rem;
-      border-radius: var(--radius-full);
-      font-size: 0.775rem;
-      font-weight: 800;
-      background: var(--accent-brand-soft);
-      color: var(--accent-brand);
-      border: 1px solid rgba(139, 90, 43, 0.18);
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      padding: 0.35rem 0.85rem !important;
+      border-radius: var(--radius-full) !important;
+      font-size: 0.775rem !important;
+      font-weight: 800 !important;
+      background: var(--accent-brand-soft) !important;
+      color: var(--accent-brand) !important;
+      border: 1px solid rgba(139, 90, 43, 0.18) !important;
+      line-height: 1.25 !important;
+      vertical-align: middle !important;
+      box-sizing: border-box !important;
     }
 
     .badge-status {
-      display: inline-block;
-      padding: 0.35rem 0.85rem;
-      border-radius: var(--radius-full);
-      font-size: 0.775rem;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      padding: 0.35rem 0.85rem !important;
+      border-radius: var(--radius-full) !important;
+      font-size: 0.775rem !important;
+      font-weight: 800 !important;
+      line-height: 1.25 !important;
+      vertical-align: middle !important;
+      box-sizing: border-box !important;
+    }
+
+    /* Device Gallery Image File Uploader Widget */
+    .admin-file-upload-box {
+      width: 100%;
+    }
+
+    .admin-file-input {
+      display: none !important;
+    }
+
+    .admin-file-preview-area {
+      border: 2px dashed rgba(217, 119, 6, 0.35);
+      background: rgba(253, 251, 247, 0.9);
+      border-radius: 16px;
+      padding: 0.85rem;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      min-height: 100px;
+    }
+
+    .admin-file-preview-area:hover {
+      border-color: #d97706;
+      background: #ffffff;
+      box-shadow: 0 8px 24px rgba(217, 119, 6, 0.12);
+    }
+
+    .preview-img-container {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .preview-img-container img {
+      max-height: 110px;
+      max-width: 100%;
+      object-fit: contain;
+      border-radius: 12px;
+      border: 1px solid rgba(217, 119, 6, 0.2);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+    }
+
+    .file-upload-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.3rem;
+      color: #b45309;
+    }
+
+    .file-upload-placeholder i {
+      font-size: 1.75rem;
+      color: #d97706;
+    }
+
+    .file-upload-placeholder span {
+      font-family: var(--font-heading);
       font-weight: 800;
+      font-size: 0.85rem;
+      color: #1e1b18;
+    }
+
+    .file-upload-placeholder small {
+      font-size: 0.725rem;
+      color: #78350f;
     }
 
     .badge-status.published {
@@ -1037,10 +1151,13 @@
           <p>Selamat datang di Panel Manajemen Content & Produksi Bonekaku Enterprise</p>
         </div>
         <div class="admin-user-profile">
-          <div class="admin-avatar">AD</div>
+          <div class="admin-avatar-wrapper">
+            <div class="admin-avatar">AD</div>
+            <span class="online-status-dot" title="Online Status"></span>
+          </div>
           <div class="admin-user-info">
             <h4>Admin Production</h4>
-            <span>Super Administrator</span>
+            <span class="admin-role-badge"><i class="fas fa-shield-halved"></i> Super Administrator</span>
           </div>
         </div>
       </header>
@@ -1247,8 +1364,21 @@
           </div>
 
           <div class="form-group-admin">
-            <label for="prodImage">URL File Gambar *</label>
-            <input type="text" id="prodImage" class="form-control-admin" placeholder="Contoh: Boneka-Bear-Bobby-18-outfit2-1536x1152_eA0g.jpg" required>
+            <label for="prodImageFile">Foto Produk (Pilih dari Galeri Device) *</label>
+            <div class="admin-file-upload-box">
+              <input type="file" id="prodImageFile" accept="image/*" class="admin-file-input" onchange="handleProductFileSelect(event)">
+              <input type="hidden" id="prodImage" required>
+              <div class="admin-file-preview-area" id="prodFilePreviewArea" onclick="document.getElementById('prodImageFile').click()">
+                <div class="preview-img-container">
+                  <img src="" id="prodFilePreviewImg" alt="Preview foto produk" onerror="this.style.display='none';">
+                  <div class="file-upload-placeholder" id="prodFilePlaceholder">
+                    <i class="fas fa-cloud-arrow-up"></i>
+                    <span>Pilih Foto dari Galeri Device / Perangkat Anda</span>
+                    <small>Format: JPG, PNG, WEBP (Otomatis dimuat dari Galeri)</small>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -1309,8 +1439,21 @@
         </div>
 
         <div class="form-group-admin">
-          <label for="artImage">URL Gambar Cover *</label>
-          <input type="text" id="artImage" class="form-control-admin" placeholder="Image-Archie-Bear_eA0g.png" required>
+          <label for="artImageFile">Gambar Cover Artikel (Pilih dari Galeri Device) *</label>
+          <div class="admin-file-upload-box">
+            <input type="file" id="artImageFile" accept="image/*" class="admin-file-input" onchange="handleArticleFileSelect(event)">
+            <input type="hidden" id="artImage" required>
+            <div class="admin-file-preview-area" id="artFilePreviewArea" onclick="document.getElementById('artImageFile').click()">
+              <div class="preview-img-container">
+                <img src="" id="artFilePreviewImg" alt="Preview cover artikel" onerror="this.style.display='none';">
+                <div class="file-upload-placeholder" id="artFilePlaceholder">
+                  <i class="fas fa-cloud-arrow-up"></i>
+                  <span>Pilih Foto dari Galeri Device / Perangkat Anda</span>
+                  <small>Format: JPG, PNG, WEBP (Otomatis dimuat dari Galeri)</small>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="form-group-admin">
@@ -1522,6 +1665,11 @@
     function openCreateProductModal() {
       document.getElementById('prodEditId').value = "";
       document.getElementById('productAdminForm').reset();
+      document.getElementById('prodImage').value = "";
+      const imgEl = document.getElementById('prodFilePreviewImg');
+      const placeholder = document.getElementById('prodFilePlaceholder');
+      if (imgEl) { imgEl.src = ""; imgEl.style.display = "none"; }
+      if (placeholder) placeholder.style.display = "flex";
       document.getElementById('productModalTitle').innerText = "Tambah Produk Katalog Baru";
       document.getElementById('productModalAdmin').classList.add('open');
     }
@@ -1535,8 +1683,18 @@
       document.getElementById('prodCategory').value = prod.category;
       document.getElementById('prodMOQ').value = prod.moq;
       document.getElementById('prodPrice').value = prod.priceRange;
-      document.getElementById('prodImage').value = prod.image;
+      document.getElementById('prodImage').value = prod.image || "";
       document.getElementById('prodDesc').value = prod.desc;
+
+      const imgEl = document.getElementById('prodFilePreviewImg');
+      const placeholder = document.getElementById('prodFilePlaceholder');
+      if (prod.image) {
+        if (imgEl) { imgEl.src = prod.image; imgEl.style.display = "block"; }
+        if (placeholder) placeholder.style.display = "none";
+      } else {
+        if (imgEl) { imgEl.src = ""; imgEl.style.display = "none"; }
+        if (placeholder) placeholder.style.display = "flex";
+      }
 
       document.getElementById('productModalTitle').innerText = "Edit Data Produk Katalog";
       document.getElementById('productModalAdmin').classList.add('open');
@@ -1544,6 +1702,36 @@
 
     function closeProductAdminModal() {
       document.getElementById('productModalAdmin').classList.remove('open');
+    }
+
+    function handleProductFileSelect(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        const dataUrl = evt.target.result;
+        document.getElementById('prodImage').value = dataUrl;
+        const imgEl = document.getElementById('prodFilePreviewImg');
+        const placeholder = document.getElementById('prodFilePlaceholder');
+        if (imgEl) { imgEl.src = dataUrl; imgEl.style.display = 'block'; }
+        if (placeholder) placeholder.style.display = 'none';
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function handleArticleFileSelect(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        const dataUrl = evt.target.result;
+        document.getElementById('artImage').value = dataUrl;
+        const imgEl = document.getElementById('artFilePreviewImg');
+        const placeholder = document.getElementById('artFilePlaceholder');
+        if (imgEl) { imgEl.src = dataUrl; imgEl.style.display = 'block'; }
+        if (placeholder) placeholder.style.display = 'none';
+      };
+      reader.readAsDataURL(file);
     }
 
     function handleProductFormSubmit(e) {
@@ -1657,7 +1845,7 @@
       if (pagContainer) {
         pagContainer.innerHTML = `
           <div style="font-size:0.875rem; font-weight:700; color:var(--text-muted); display:flex; align-items:center; justify-content:space-between; width:100%;">
-            <span><i class="fas fa-newspaper" style="color:var(--accent-brand); margin-right:0.4rem;"></i> Total Artikel Publikasi: <strong style="color:var(--text-primary);">${totalItems} Artikel</strong> (Tampil Full)</span>
+            <span><i class="fas fa-newspaper" style="color:var(--accent-brand); margin-right:0.4rem;"></i> Total Artikel Publikasi: <strong style="color:var(--text-primary);">${totalItems} Artikel</strong></span>
             <span class="badge-cat" style="background:rgba(16,185,129,0.15); color:#059669; border:1px solid rgba(16,185,129,0.3);"><i class="fas fa-circle-check"></i> Mode Full List Active</span>
           </div>
         `;
@@ -1673,6 +1861,11 @@
     function openCreateArticleModal() {
       document.getElementById('artEditId').value = "";
       document.getElementById('articleAdminForm').reset();
+      document.getElementById('artImage').value = "";
+      const imgEl = document.getElementById('artFilePreviewImg');
+      const placeholder = document.getElementById('artFilePlaceholder');
+      if (imgEl) { imgEl.src = ""; imgEl.style.display = "none"; }
+      if (placeholder) placeholder.style.display = "flex";
       document.getElementById('articleModalTitle').innerText = "Tambah Artikel Baru";
       document.getElementById('articleModalAdmin').classList.add('open');
     }
@@ -1687,8 +1880,18 @@
       document.getElementById('artAuthor').value = art.author;
       document.getElementById('artDate').value = art.date;
       document.getElementById('artStatus').value = art.status;
-      document.getElementById('artImage').value = art.image;
+      document.getElementById('artImage').value = art.image || "";
       document.getElementById('artSummary').value = art.summary;
+
+      const imgEl = document.getElementById('artFilePreviewImg');
+      const placeholder = document.getElementById('artFilePlaceholder');
+      if (art.image) {
+        if (imgEl) { imgEl.src = art.image; imgEl.style.display = "block"; }
+        if (placeholder) placeholder.style.display = "none";
+      } else {
+        if (imgEl) { imgEl.src = ""; imgEl.style.display = "none"; }
+        if (placeholder) placeholder.style.display = "flex";
+      }
 
       document.getElementById('articleModalTitle').innerText = "Edit Artikel Publikasi";
       document.getElementById('articleModalAdmin').classList.add('open');
