@@ -8490,3 +8490,55 @@ textarea.form-control-custom {
     padding: 0.5rem 0.65rem !important;
   }
 }
+
+/* --------------------------------------------------------------------------
+   GLOBAL PERFORMANCE OPTIMIZATIONS (60FPS HARDWARE ACCELERATION & FAST LOAD)
+   -------------------------------------------------------------------------- */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Enable hardware acceleration & containment on cards and heavy components */
+.product-card,
+.home-product-card,
+.bento-card,
+.feature-card,
+.article-card,
+.navbar,
+.subpage-header-banner {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Fast rendering containment for long product grids */
+.products-grid .product-card,
+.products-grid .product-list-row,
+.ss1528-products-grid .home-product-card {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 420px;
+}
+
+/* High-performance mobile rendering overrides */
+@media (max-width: 768px) {
+  /* Replace heavy CPU/GPU backdrop blur on mobile with fast solid translucent fallbacks */
+  .navbar,
+  .navbar-glass,
+  .breadcrumb-trail,
+  .hero-glass-overlay-card,
+  .modal-container-rich,
+  .dropdown-menu-popup {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  .navbar {
+    background: rgba(255, 252, 247, 0.98) !important;
+  }
+
+  /* Disable heavy infinite background dust particles on mobile to save CPU & battery */
+  .subpage-header-banner::after {
+    animation: none !important;
+    display: none !important;
+  }
+}

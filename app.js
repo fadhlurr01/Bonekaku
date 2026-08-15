@@ -947,23 +947,32 @@ function renderProducts(items, page = 1) {
 }
 
 function initCard3DTilt() {
+  if (!window.matchMedia('(pointer: fine)').matches) return; // Skip 3D tilt calculation on mobile touch devices for smooth 60fps
+  
   const cards = document.querySelectorAll('.bento-card, .feature-card, .article-card');
   cards.forEach(card => {
+    let ticking = false;
     card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-      const rotateX = ((y - centerY) / centerY) * -4;
-      const rotateY = ((x - centerX) / centerX) * 4;
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+          const rotateX = ((y - centerY) / centerY) * -4;
+          const rotateY = ((x - centerX) / centerX) * 4;
 
-      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
-    });
+          card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
 
     card.addEventListener('mouseleave', () => {
       card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)`;
-    });
+    }, { passive: true });
   });
 }
 
