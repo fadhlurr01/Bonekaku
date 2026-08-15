@@ -4781,8 +4781,6 @@ textarea.form-control-custom {
   }
 }
 
-}
-
 /* --------------------------------------------------------------------------
    EXACT REFERENCE SECTIONS (SS_1527, SS_1528, SS_1533, SS_1534, SS_1535)
    -------------------------------------------------------------------------- */
@@ -6943,7 +6941,7 @@ textarea.form-control-custom {
   box-sizing: border-box !important;
 }
 
-/* SHARE BAR */
+/* SHARE BAR (NO CLIPPING ON MOBILE OR DESKTOP) */
 .article-share-bar {
   display: flex;
   align-items: center;
@@ -6955,6 +6953,9 @@ textarea.form-control-custom {
   border-radius: var(--radius-md);
   border: 1px solid rgba(139, 90, 43, 0.16);
   margin-bottom: 2.25rem;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
 }
 
 .article-share-bar h4 {
@@ -6967,11 +6968,14 @@ textarea.form-control-custom {
 
 .share-btns {
   display: flex;
+  flex-wrap: wrap;
   gap: 0.5rem;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
 }
 
 .share-btn {
-  padding: 0.45rem 0.95rem;
+  padding: 0.45rem 0.85rem;
   border-radius: var(--radius-full);
   font-family: var(--font-heading);
   font-size: 0.8rem;
@@ -6982,6 +6986,8 @@ textarea.form-control-custom {
   align-items: center;
   gap: 0.4rem;
   transition: transform 0.2s ease;
+  white-space: nowrap;
+  box-sizing: border-box;
 }
 
 .share-btn:hover { transform: translateY(-2px); }
@@ -8709,6 +8715,89 @@ body, html {
     line-height: 1.7 !important;
     word-break: break-word !important;
     overflow-wrap: break-word !important;
+  }
+}
+
+/* MOBILE CENTERING & RESPONSIVE LAYOUT FIX FOR TENTANG KAMI & LAYANAN PAGES */
+@media (max-width: 768px) {
+  .ss1509-story-section,
+  .ss1509-story-grid,
+  .ss1509-story-content,
+  .ss1511-services-section,
+  .ss1511-services-list,
+  .ss1511-service-card,
+  .ss1511-service-content,
+  .subpage-header-banner,
+  .subpage-banner-content {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  .subpage-header-banner {
+    padding: 2.25rem 1.25rem !important;
+    text-align: center !important;
+  }
+
+  .subpage-banner-content {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  .breadcrumb-trail {
+    justify-content: center !important;
+    margin-bottom: 0.75rem !important;
+  }
+
+  .ss1509-welcome-title,
+  .ss1509-story-content .section-tag-gold,
+  .ss1511-service-title,
+  .ss1511-service-badge {
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .ss1509-story-content {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  .ss1509-lead-card {
+    text-align: center !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .ss1511-service-card {
+    grid-template-columns: 1fr !important;
+    text-align: center !important;
+  }
+
+  .ss1511-service-content {
+    align-items: center !important;
+    text-align: center !important;
+    padding: 1.5rem 1.15rem !important;
+  }
+
+  .ss1511-variant-tags {
+    justify-content: center !important;
+  }
+
+  .ss1511-card-action {
+    justify-content: center !important;
+    width: 100% !important;
+  }
+
+  .ss1511-card-action .btn {
+    width: 100% !important;
+    justify-content: center !important;
   }
 }
 
