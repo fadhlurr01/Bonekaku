@@ -6868,10 +6868,18 @@ textarea.form-control-custom {
   color: #3b2e25;
   line-height: 1.8;
   margin-bottom: 2.5rem;
+  overflow-wrap: break-word !important;
+  word-wrap: break-word !important;
+  word-break: break-word !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
 }
 
 .article-modal-body p {
   margin-bottom: 1.25rem;
+  overflow-wrap: break-word !important;
+  word-wrap: break-word !important;
+  word-break: break-word !important;
 }
 
 .article-modal-body .lead-paragraph {
@@ -6879,6 +6887,8 @@ textarea.form-control-custom {
   font-weight: 600;
   color: #1e1b18;
   line-height: 1.75;
+  overflow-wrap: break-word !important;
+  word-wrap: break-word !important;
 }
 
 .article-modal-body h3 {
@@ -6887,6 +6897,9 @@ textarea.form-control-custom {
   font-weight: 800;
   color: var(--accent-brand);
   margin: 2rem 0 0.85rem 0;
+  overflow-wrap: break-word !important;
+  word-wrap: break-word !important;
+  word-break: break-word !important;
 }
 
 .article-quote {
@@ -6900,6 +6913,11 @@ textarea.form-control-custom {
   font-weight: 700;
   color: #2b1c15;
   line-height: 1.6;
+  overflow-wrap: break-word !important;
+  word-wrap: break-word !important;
+  word-break: break-word !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
 }
 
 /* SHARE BAR */
@@ -8653,6 +8671,44 @@ body, html {
   width: 100% !important;
   max-width: 100% !important;
   scroll-behavior: smooth !important;
+}
+
+/* Mobile Responsive Article Detail Formatting Fix */
+@media (max-width: 768px) {
+  .article-main-content,
+  .article-modal-body,
+  .single-article-section {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  .article-modal-body h3 {
+    font-size: 1.15rem !important;
+    line-height: 1.45 !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+
+  .article-quote {
+    padding: 1rem 1.15rem !important;
+    font-size: 0.875rem !important;
+    line-height: 1.55 !important;
+    margin: 1.25rem 0 !important;
+    border-left-width: 3px !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+
+  .article-modal-body p {
+    font-size: 0.95rem !important;
+    line-height: 1.7 !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+  }
 }
 
 /* --------------------------------------------------------------------------
