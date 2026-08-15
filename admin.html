@@ -1459,21 +1459,14 @@
     }
 
     /* ---------------- CATALOG MANAGEMENT ---------------- */
-    function renderCatalogAdminTable(items = adminProducts, page = 1) {
-      adminCatalogPage = page;
+    function renderCatalogAdminTable(items = adminProducts) {
       const tbody = document.getElementById('catalogAdminTableBody');
       const pagContainer = document.getElementById('adminCatalogPagination');
       if (!tbody) return;
 
       const totalItems = items.length;
-      const totalPages = Math.ceil(totalItems / ADMIN_PAGE_SIZE) || 1;
-      if (adminCatalogPage > totalPages) adminCatalogPage = totalPages;
-      if (adminCatalogPage < 1) adminCatalogPage = 1;
 
-      const startIdx = (adminCatalogPage - 1) * ADMIN_PAGE_SIZE;
-      const pageItems = items.slice(startIdx, startIdx + ADMIN_PAGE_SIZE);
-
-      tbody.innerHTML = pageItems.map(p => `
+      tbody.innerHTML = items.map(p => `
         <tr>
           <td><img src="${p.image}" class="table-img-thumb" alt="${p.title}" onerror="this.src='Logo-Baru-Bonekaku-600x163_eA0g.png';"></td>
           <td><strong>${p.title}</strong></td>
@@ -1490,7 +1483,12 @@
       `).join('');
 
       if (pagContainer) {
-        renderAdminPaginationUI(pagContainer, totalItems, adminCatalogPage, totalPages, ADMIN_PAGE_SIZE, 'changeAdminCatalogPage');
+        pagContainer.innerHTML = `
+          <div style="font-size:0.875rem; font-weight:700; color:var(--text-muted); display:flex; align-items:center; justify-content:space-between; width:100%;">
+            <span><i class="fas fa-list-check" style="color:var(--accent-brand); margin-right:0.4rem;"></i> Total Produk Katalog: <strong style="color:var(--text-primary);">${totalItems} Produk</strong> (Tampil Full)</span>
+            <span class="badge-cat" style="background:rgba(16,185,129,0.15); color:#059669; border:1px solid rgba(16,185,129,0.3);"><i class="fas fa-circle-check"></i> Mode Full List Active</span>
+          </div>
+        `;
       }
     }
 
@@ -1611,21 +1609,14 @@
     }
 
     /* ---------------- ARTICLE MANAGEMENT ---------------- */
-    function renderArticlesAdminTable(items = adminArticles, page = 1) {
-      adminArticlePage = page;
+    function renderArticlesAdminTable(items = adminArticles) {
       const tbody = document.getElementById('articlesAdminTableBody');
       const pagContainer = document.getElementById('adminArticlesPagination');
       if (!tbody) return;
 
       const totalItems = items.length;
-      const totalPages = Math.ceil(totalItems / ADMIN_PAGE_SIZE) || 1;
-      if (adminArticlePage > totalPages) adminArticlePage = totalPages;
-      if (adminArticlePage < 1) adminArticlePage = 1;
 
-      const startIdx = (adminArticlePage - 1) * ADMIN_PAGE_SIZE;
-      const pageItems = items.slice(startIdx, startIdx + ADMIN_PAGE_SIZE);
-
-      tbody.innerHTML = pageItems.map(a => `
+      tbody.innerHTML = items.map(a => `
         <tr>
           <td><img src="${a.image}" class="table-img-thumb" alt="${a.title}" onerror="this.src='Logo-Baru-Bonekaku-600x163_eA0g.png';"></td>
           <td><strong>${a.title}</strong></td>
@@ -1643,7 +1634,12 @@
       `).join('');
 
       if (pagContainer) {
-        renderAdminPaginationUI(pagContainer, totalItems, adminArticlePage, totalPages, ADMIN_PAGE_SIZE, 'changeAdminArticlePage');
+        pagContainer.innerHTML = `
+          <div style="font-size:0.875rem; font-weight:700; color:var(--text-muted); display:flex; align-items:center; justify-content:space-between; width:100%;">
+            <span><i class="fas fa-newspaper" style="color:var(--accent-brand); margin-right:0.4rem;"></i> Total Artikel Publikasi: <strong style="color:var(--text-primary);">${totalItems} Artikel</strong> (Tampil Full)</span>
+            <span class="badge-cat" style="background:rgba(16,185,129,0.15); color:#059669; border:1px solid rgba(16,185,129,0.3);"><i class="fas fa-circle-check"></i> Mode Full List Active</span>
+          </div>
+        `;
       }
     }
 
