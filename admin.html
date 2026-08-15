@@ -1351,28 +1351,47 @@
     <span id="toastMsg">Berhasil diperbarui!</span>
   </div>
 
+  <!-- INCLUDE MAIN APP SCRIPT FOR LIVE FULL 100 CATALOG & ARTICLES DATA -->
+  <script src="app.js"></script>
+
   <!-- JS LOGIC -->
   <script>
-    // Initial State Data
-    let adminProducts = JSON.parse(localStorage.getItem('bonekaku_products')) || [
-      { id: 1, title: "Bear Vico, 15cm", category: "souvenir", categoryLabel: "Boneka Souvenir", moq: "Min 50 Pcs", priceRange: "Rp 35.000 – 65.000", image: "Boneka-Bear-Vico-3outfit-1536x1149_eA0g.jpg", desc: "Boneka bear mungil nan menggemaskan dengan gaun & kaos custom logo perusahaan." },
-      { id: 2, title: "Bear Mayna, 15cm", category: "souvenir", categoryLabel: "Boneka Souvenir", moq: "Min 50 Pcs", priceRange: "Rp 35.000 – 65.000", image: "Boneka-Bear-Mayna-3outfit-1536x1152_eA0g.jpg", desc: "Plush bear mungil super lembut cocok untuk merchandise seminar dan souvenir event." },
-      { id: 3, title: "Bear Bobby, 18cm", category: "souvenir", categoryLabel: "Boneka Souvenir", moq: "Min 50 Pcs", priceRange: "Rp 45.000 – 75.000", image: "Boneka-Bear-Bobby-18-outfit2-1536x1152_eA0g.jpg", desc: "Karakter beruang klasik dengan opsi kostum koki, chef, dan wisuda custom." },
-      { id: 4, title: "Bear Boy Girl, 20cm", category: "souvenir", categoryLabel: "Boneka Souvenir", moq: "Min 50 Pcs", priceRange: "Rp 55.000 – 85.000", image: "Boneka-Bear-Boy-Girl-outfit-1536x1152_eA0g.jpg", desc: "Pasangan boneka beruang laki-laki dan perempuan cocok untuk wedding & ulang tahun." },
-      { id: 5, title: "Bear Kempinski, 22cm", category: "custom", categoryLabel: "Boneka Custom", moq: "Min 50 Pcs", priceRange: "Rp 65.000 – 95.000", image: "Boneka-Bear-Kempinski-22-3outfit-1536x1152_eA0g.jpg", desc: "Boneka souvenir mewah standar hotel bintang lima bersertifikasi SNI." },
-      { id: 6, title: "Bantal Custom Print 40x40", category: "bantal", categoryLabel: "Bantal Custom", moq: "Min 50 Pcs", priceRange: "Rp 40.000 – 70.000", image: "Image-Bantal-06-1030x729_eA0g.png", desc: "Bantal cetak custom full print sublimasi HD kualitas warna tajam tak mudah pudar." }
-    ];
+    // Initial State Data Array (Populated from Live 100 Products & Articles)
+    let adminProducts = [];
+    let adminArticles = [];
 
-    let adminArticles = JSON.parse(localStorage.getItem('bonekaku_articles')) || [
-      { id: 1, title: "Panduan Lengkap Memilih Konveksi Boneka Custom SNI untuk Promo Enterprise", category: "Panduan Enterprise", author: "Tim Bonekaku", date: "14 Agustus 2026", status: "Published", image: "Image-Archie-Bear_eA0g.png", summary: "Simak tips krusial memilih pabrik manufaktur boneka custom bersertifikasi SNI resmi untuk corporate branding." },
-      { id: 2, title: "5 Alasan Mengapa Maskot 3D Beruang Menjadi Souvenir Corporate Paling Efektif", category: "Corporate Branding", author: "Tim Marketing", date: "12 Agustus 2026", status: "Published", image: "Boneka-Bear-Bobby-18-outfit2-1536x1152_eA0g.jpg", summary: "Maskot plushie terbukti meningkatkan emotional connection pelanggan terhadap brand hingga 85%." },
-      { id: 3, title: "Mengenal Jenis Bahan Kain Boneka: Dari Yelvo Super Soft Hingga Rasfur Bulu Halus", category: "Bahan & Material", author: "Tim Produksi", date: "10 Agustus 2026", status: "Published", image: "Image-Bantal-06-1030x729_eA0g.png", summary: "Pelajari perbedaan tekstur, kelembutan, dan standar keamanan kain boneka bersertifikat SNI." }
-    ];
+    function loadAdminData() {
+      if (typeof getLiveProductsData === 'function') {
+        const fullProds = getLiveProductsData();
+        const storedProds = JSON.parse(localStorage.getItem('bonekaku_products'));
+        if (!storedProds || storedProds.length < fullProds.length) {
+          localStorage.setItem('bonekaku_products', JSON.stringify(fullProds));
+          adminProducts = fullProds;
+        } else {
+          adminProducts = storedProds;
+        }
+      } else {
+        adminProducts = JSON.parse(localStorage.getItem('bonekaku_products')) || [];
+      }
+
+      if (typeof getLiveArticlesData === 'function') {
+        const fullArts = getLiveArticlesData();
+        const storedArts = JSON.parse(localStorage.getItem('bonekaku_articles'));
+        if (!storedArts || storedArts.length < fullArts.length) {
+          localStorage.setItem('bonekaku_articles', JSON.stringify(fullArts));
+          adminArticles = fullArts;
+        } else {
+          adminArticles = storedArts;
+        }
+      } else {
+        adminArticles = JSON.parse(localStorage.getItem('bonekaku_articles')) || [];
+      }
+    }
 
     document.addEventListener('DOMContentLoaded', () => {
-      saveToStorage();
-      renderCatalogAdminTable();
-      renderArticlesAdminTable();
+      loadAdminData();
+      renderCatalogAdminTable(adminProducts, 1);
+      renderArticlesAdminTable(adminArticles, 1);
       updateAdminStats();
       initAdminNavigation();
     });
@@ -1415,7 +1434,7 @@
       document.getElementById('pageHeadingTitle').innerText = headings[tabId] || 'Admin Dashboard';
     }
 
-    /* ---------------- CATALOG & ARTICLE 20-ITEMS PAGINATION ---------------- */
+    /* ---------------- CATALOG 20-ITEMS PAGINATION & MANAGEMENT ---------------- */
     let adminCatalogPage = 1;
     let adminArticlePage = 1;
     const ADMIN_PAGE_SIZE = 20;
@@ -1424,7 +1443,7 @@
       if (!container) return;
 
       if (totalItems <= pageSize) {
-        container.innerHTML = `<div class="pagination-info" style="color:rgba(255,255,255,0.7); font-size:0.85rem;">Menampilkan semua <strong>${totalItems}</strong> data</div>`;
+        container.innerHTML = `<div class="pagination-info" style="color:var(--text-muted); font-weight:700; font-size:0.875rem;"><i class="fas fa-list-check" style="color:var(--accent-brand); margin-right:0.4rem;"></i> Menampilkan seluruh <strong>${totalItems}</strong> data</div>`;
         return;
       }
 
@@ -1441,8 +1460,8 @@
       pageBtnsHtml += `<button class="page-btn" ${currentPage === totalPages ? 'disabled' : ''} onclick="${callbackFuncName}(${currentPage + 1})">Next <i class="fas fa-chevron-right"></i></button>`;
 
       container.innerHTML = `
-        <div class="pagination-info" style="color:rgba(255,255,255,0.7); font-size:0.85rem;">
-          Menampilkan <strong>${startItem} – ${endItem}</strong> dari <strong>${totalItems}</strong> data (Halaman ${currentPage}/${totalPages})
+        <div class="pagination-info" style="color:var(--text-muted); font-weight:700; font-size:0.875rem;">
+          <i class="fas fa-boxes-stacked" style="color:var(--accent-brand); margin-right:0.4rem;"></i> Menampilkan <strong>${startItem} – ${endItem}</strong> dari <strong>${totalItems}</strong> Produk (Halaman ${currentPage}/${totalPages})
         </div>
         <div class="pagination-controls">
           ${pageBtnsHtml}
@@ -1459,14 +1478,21 @@
     }
 
     /* ---------------- CATALOG MANAGEMENT ---------------- */
-    function renderCatalogAdminTable(items = adminProducts) {
+    function renderCatalogAdminTable(items = adminProducts, page = 1) {
+      adminCatalogPage = page;
       const tbody = document.getElementById('catalogAdminTableBody');
       const pagContainer = document.getElementById('adminCatalogPagination');
       if (!tbody) return;
 
       const totalItems = items.length;
+      const totalPages = Math.ceil(totalItems / ADMIN_PAGE_SIZE) || 1;
+      if (adminCatalogPage > totalPages) adminCatalogPage = totalPages;
+      if (adminCatalogPage < 1) adminCatalogPage = 1;
 
-      tbody.innerHTML = items.map(p => `
+      const startIdx = (adminCatalogPage - 1) * ADMIN_PAGE_SIZE;
+      const pageItems = items.slice(startIdx, startIdx + ADMIN_PAGE_SIZE);
+
+      tbody.innerHTML = pageItems.map(p => `
         <tr>
           <td><img src="${p.image}" class="table-img-thumb" alt="${p.title}" onerror="this.src='Logo-Baru-Bonekaku-600x163_eA0g.png';"></td>
           <td><strong>${p.title}</strong></td>
@@ -1483,12 +1509,7 @@
       `).join('');
 
       if (pagContainer) {
-        pagContainer.innerHTML = `
-          <div style="font-size:0.875rem; font-weight:700; color:var(--text-muted); display:flex; align-items:center; justify-content:space-between; width:100%;">
-            <span><i class="fas fa-list-check" style="color:var(--accent-brand); margin-right:0.4rem;"></i> Total Produk Katalog: <strong style="color:var(--text-primary);">${totalItems} Produk</strong> (Tampil Full)</span>
-            <span class="badge-cat" style="background:rgba(16,185,129,0.15); color:#059669; border:1px solid rgba(16,185,129,0.3);"><i class="fas fa-circle-check"></i> Mode Full List Active</span>
-          </div>
-        `;
+        renderAdminPaginationUI(pagContainer, totalItems, adminCatalogPage, totalPages, ADMIN_PAGE_SIZE, 'changeAdminCatalogPage');
       }
     }
 
