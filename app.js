@@ -1537,83 +1537,14 @@ function closeVideoModal() {
 let currentOpenArticleId = 1;
 
 function openArticleDetailModal(articleId) {
-  const articles = getLiveArticlesData();
-  const article = articles.find(a => a.id == articleId) || articles[0];
-  if (!article) return;
-
-  currentOpenArticleId = article.id;
-  const modal = document.getElementById('articleReaderModal');
-  if (!modal) return;
-
-  const breadcrumbTitle = document.getElementById('artModalBreadcrumbTitle');
-  const catBadge = document.getElementById('artModalCategory');
-  const titleEl = document.getElementById('artModalTitle');
-  const dateEl = document.getElementById('artModalDate');
-  const authorEl = document.getElementById('artModalAuthor');
-  const imgEl = document.getElementById('artModalImg');
-  const bodyEl = document.getElementById('artModalBody');
-  const nextBtn = document.getElementById('artModalNextBtn');
-  const commentTitle = document.getElementById('artModalCommentTitle');
-
-  if (breadcrumbTitle) breadcrumbTitle.innerText = article.title;
-  if (catBadge) catBadge.innerText = article.category || "Panduan Industri";
-  if (titleEl) titleEl.innerText = article.title;
-  if (dateEl) dateEl.innerText = article.date || "10 Agustus 2026";
-  if (authorEl) authorEl.innerText = article.author || "Admin Bonekaku.co.id";
-  if (imgEl) imgEl.src = article.image;
-  if (commentTitle) commentTitle.innerText = article.title;
-
-  if (bodyEl) {
-    const fullBody = article.body || article.summary || '';
-    bodyEl.innerHTML = `
-      <p class="lead-paragraph">
-        <strong>${article.title}</strong> &mdash; ${article.summary || fullBody}
-      </p>
-
-      <h3>1. Ringkasan & Pendahuluan Utama</h3>
-      <p>
-        ${fullBody} Industri pembuatan souvenir plushie, bantal custom, dan boneka maskot promosi dari Bonekaku Enterprise selalu mengedepankan kualitas serat kain terbaik serta akurasi warna brand yang presisi.
-      </p>
-
-      <blockquote class="article-quote">
-        <i class="fas fa-quote-left"></i> Standar produksi Bonekaku memastikan 100% bahan baku kain telah lolos uji laboratorium sertifikasi resmi SNI (Standar Nasional Indonesia) sehingga bebas zat pewarna beracun dan aman bagi semua usia.
-      </blockquote>
-
-      <h3>2. Keunggulan Material & Standar Manufaktur Bonekaku</h3>
-      <p>
-        Setiap pesanan diproses menggunakan bahan kain <strong>Yelvo Super Soft</strong> bertekstur sangat halus dengan isian 100% serat kapas <strong>Dakron Silicon Grade A</strong> murni yang anti-kempes, membal, dan bebas dari debu alergen.
-      </p>
-
-      <h3>3. Kepresisian Pembordiran Komputer HD & Pengemasan Rapi</h3>
-      <p>
-        Logo perusahaan maupun detail ekspresi maskot dibordir menggunakan mesin pembordiran komputer multi-head otomatis berkerapatan jarum tinggi, memastikan hasil akhir presisi, simetris, rapi, dan tahan lama untuk memperkuat citra positif bisnis Anda.
-      </p>
-    `;
-  }
-
-  const nextArticle = articles.find(a => a.id != article.id) || article;
-  if (nextBtn) {
-    nextBtn.innerHTML = `Next: ${nextArticle.title} <i class="fas fa-arrow-right"></i>`;
-    nextBtn.setAttribute('data-next-id', nextArticle.id);
-  }
-
-  modal.classList.add('active');
+  const targetId = articleId || 1;
+  window.location.href = `artikel-detail.html?id=${targetId}`;
 }
 
 function nextArticleModal() {
-  const articles = getLiveArticlesData();
   const nextBtn = document.getElementById('artModalNextBtn');
   const nextId = nextBtn ? nextBtn.getAttribute('data-next-id') : null;
-  
-  if (nextId) {
-    openArticleDetailModal(nextId);
-  } else {
-    const nextArt = articles.find(a => a.id != currentOpenArticleId) || articles[0];
-    openArticleDetailModal(nextArt.id);
-  }
-
-  const container = document.querySelector('.article-modal-scrollable');
-  if (container) container.scrollTop = 0;
+  openArticleDetailModal(nextId || 1);
 }
 
 function closeArticleModal() {
