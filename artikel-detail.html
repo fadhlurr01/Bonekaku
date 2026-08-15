@@ -127,11 +127,16 @@
             </div>
           </div>
 
-          <!-- Next Article Banner Navigation (Ref SS_1575) -->
-          <div class="article-next-banner">
-            <span class="next-label"><i class="fas fa-newspaper"></i> ARTIKEL SELANJUTNYA</span>
-            <a href="artikel-detail.html?id=2" id="detailNextLink" class="next-title-link">
-              Next: Cara Efektif Meningkatkan Brand Awareness dengan Maskot <i class="fas fa-arrow-right"></i>
+          <!-- Sequential Article Navigation Banner (Prev & Next) -->
+          <div class="article-seq-nav-container">
+            <a href="#" id="detailPrevLink" class="seq-nav-card prev-card">
+              <span class="seq-nav-badge"><i class="fas fa-arrow-left"></i> ARTIKEL SEBELUMNYA</span>
+              <span class="seq-nav-title" id="detailPrevTitle">Artikel Sebelumnya</span>
+            </a>
+
+            <a href="#" id="detailNextLink" class="seq-nav-card next-card">
+              <span class="seq-nav-badge">ARTIKEL SELANJUTNYA <i class="fas fa-arrow-right"></i></span>
+              <span class="seq-nav-title" id="detailNextTitle">Artikel Selanjutnya</span>
             </a>
           </div>
 
@@ -408,12 +413,28 @@
           `;
         }
 
-        // Set Next Article Link
-        const nextArt = articles.find(a => a.id != article.id) || articles[0];
+        // Set Sequential Previous and Next Article Links
+        const currentIdx = articles.findIndex(a => a.id == article.id);
+        const activeIdx = currentIdx !== -1 ? currentIdx : 0;
+
+        const prevIdx = (activeIdx - 1 + articles.length) % articles.length;
+        const nextIdx = (activeIdx + 1) % articles.length;
+
+        const prevArt = articles[prevIdx];
+        const nextArt = articles[nextIdx];
+
+        const prevLink = document.getElementById('detailPrevLink');
+        const prevTitleEl = document.getElementById('detailPrevTitle');
+        if (prevLink && prevTitleEl && prevArt) {
+          prevLink.href = `artikel-detail.html?id=${prevArt.id}`;
+          prevTitleEl.innerText = prevArt.title;
+        }
+
         const nextLink = document.getElementById('detailNextLink');
-        if (nextLink) {
+        const nextTitleEl = document.getElementById('detailNextTitle');
+        if (nextLink && nextTitleEl && nextArt) {
           nextLink.href = `artikel-detail.html?id=${nextArt.id}`;
-          nextLink.innerHTML = `Next: ${nextArt.title} <i class="fas fa-arrow-right"></i>`;
+          nextTitleEl.innerText = nextArt.title;
         }
 
         // Render Popular Articles Sidebar
