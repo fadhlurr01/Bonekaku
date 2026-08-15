@@ -906,16 +906,12 @@ function renderProducts(items, page = 1) {
             <h3 class="card-back-title">${item.title}</h3>
             
             <div class="card-back-meta">
-              <span class="meta-pill"><i class="fas fa-ruler-vertical"></i> ${sizeVal}</span>
-              <span class="meta-pill"><i class="fas fa-boxes-stacked"></i> ${moqVal}</span>
               <span class="meta-pill price"><i class="fas fa-tag"></i> ${priceVal}</span>
             </div>
 
-            <div class="card-back-specs">
-              <ul>
-                ${specsList.slice(0, 2).map(spec => `<li><i class="fas fa-check-circle" style="color:#10b981;"></i> ${spec}</li>`).join('')}
-              </ul>
-            </div>
+            <p class="card-back-summary-text">
+              ${item.desc || 'Boneka souvenir custom berkualitas tinggi berstandar SNI resmi, cocok untuk event corporate giftset & promosi.'}
+            </p>
           </div>
 
           <div class="card-back-footer">

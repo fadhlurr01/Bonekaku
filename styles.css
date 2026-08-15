@@ -8437,10 +8437,10 @@ textarea.form-control-custom {
 .card-back-body {
   display: flex !important;
   flex-direction: column !important;
-  gap: 0.85rem !important;
+  gap: 0.75rem !important;
   flex-grow: 1 !important;
   justify-content: center !important;
-  padding: 0.5rem 0 !important;
+  padding: 0.35rem 0 !important;
 }
 
 .card-back-title {
@@ -8459,42 +8459,27 @@ textarea.form-control-custom {
   gap: 0.45rem !important;
 }
 
-.card-back-meta .meta-pill {
-  background: rgba(255, 255, 255, 0.08) !important;
-  color: #fef08a !important;
-  border: 1px solid rgba(254, 240, 138, 0.3) !important;
-  font-size: 0.775rem !important;
-  font-weight: 800 !important;
-  padding: 0.3rem 0.65rem !important;
-  border-radius: 10px !important;
-}
-
 .card-back-meta .meta-pill.price {
   background: linear-gradient(135deg, rgba(217, 119, 6, 0.35) 0%, rgba(180, 83, 9, 0.3) 100%) !important;
   color: #fbbf24 !important;
-  border-color: rgba(251, 191, 36, 0.5) !important;
+  border: 1px solid rgba(251, 191, 36, 0.5) !important;
+  font-size: 0.8rem !important;
+  font-weight: 800 !important;
+  padding: 0.3rem 0.7rem !important;
+  border-radius: 10px !important;
 }
 
-.card-back-specs {
-  margin-top: 0.25rem !important;
-}
-
-.card-back-specs ul {
-  list-style: none !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 0.45rem !important;
-}
-
-.card-back-specs li {
-  font-size: 0.825rem !important;
+.card-back-summary-text {
+  font-family: var(--font-body) !important;
+  font-size: 0.875rem !important;
   color: rgba(255, 255, 255, 0.92) !important;
-  display: flex !important;
-  align-items: center !important;
-  gap: 0.5rem !important;
-  font-weight: 600 !important;
+  line-height: 1.55 !important;
+  margin: 0 !important;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 4 !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+  font-weight: 500 !important;
 }
 
 .card-back-footer {
