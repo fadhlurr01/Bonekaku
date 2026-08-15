@@ -1024,14 +1024,26 @@ function initCatalogFilters() {
     });
   }
 
-  // Mobile sidebar toggle
-  if (mobileToggleBtn && sidebar) {
-    mobileToggleBtn.addEventListener('click', () => {
-      sidebar.classList.toggle('mobile-open');
-    });
+  // Mobile sidebar toggle & drawer handlers
+  const closeSidebarBtn = document.getElementById('mobileSidebarCloseBtn');
+  if (sidebar) {
+    if (mobileToggleBtn) {
+      mobileToggleBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        sidebar.classList.toggle('mobile-open');
+      });
+    }
+    if (closeSidebarBtn) {
+      closeSidebarBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        sidebar.classList.remove('mobile-open');
+      });
+    }
 
     document.addEventListener('click', (e) => {
-      if (!sidebar.contains(e.target) && !mobileToggleBtn.contains(e.target)) {
+      if (sidebar.classList.contains('mobile-open') && 
+          !sidebar.contains(e.target) && 
+          mobileToggleBtn && !mobileToggleBtn.contains(e.target)) {
         sidebar.classList.remove('mobile-open');
       }
     });
