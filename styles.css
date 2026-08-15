@@ -8548,31 +8548,8 @@ textarea.form-control-custom {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 /* --------------------------------------------------------------------------
-   FUTURISTIC SMOOTH PAGE SWIPE TRANSITION SYSTEM
+   LIGHTNING-FAST ZERO-DELAY OPTIMIZED PAGE LOAD
    -------------------------------------------------------------------------- */
-body {
-  animation: pageSwipeIn 0.38s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-@keyframes pageSwipeIn {
-  0% {
-    opacity: 0;
-    transform: translateY(8px);
-    filter: blur(3px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-    filter: blur(0);
-  }
-}
-
-body.page-transitioning {
-  opacity: 0 !important;
-  transform: translateY(-8px) !important;
-  filter: blur(3px) !important;
-  transition: opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1), transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), filter 0.22s cubic-bezier(0.16, 1, 0.3, 1) !important;
-}
 
 /* Enable hardware acceleration & containment on cards and heavy components */
 .product-card,
