@@ -231,6 +231,10 @@ function getLiveProductsData() {
       });
 
       const mergedDefaults = fullDefaults.map(def => {
+        if (def.id <= 6) {
+          const edited = userEditedMap.get(def.id);
+          return edited ? { ...def, ...edited, category: 'favorite', categoryLabel: 'Most Favorite' } : def;
+        }
         return userEditedMap.has(def.id) ? userEditedMap.get(def.id) : def;
       });
 
